@@ -4,9 +4,19 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import LoginIcon from "@mui/icons-material/Login";
 import Login from "./Login";
+import { useNavigate } from "react-router-dom";
 
 function NavBar() {
+  const navigate = useNavigate();
+
+  function removeUser() {
+    localStorage.removeItem("userRole");
+    navigate("/");
+  }
+
   const [showModal, setShowModal] = useState(false);
+
+  const userRole = localStorage.getItem("userRole");
 
   return (
     <div>
@@ -25,14 +35,22 @@ function NavBar() {
               <Nav.Link href="#action2">Contact Us</Nav.Link>
             </Nav>
             <Nav style={{ fontSize: "18px" }}>
-              <Nav.Link
-                onClick={() => {
-                  setShowModal(true);
-                }}
-              >
-                Login
-                <LoginIcon />
-              </Nav.Link>
+              {userRole == null && (
+                <Nav.Link
+                  onClick={() => {
+                    setShowModal(true);
+                  }}
+                >
+                  Login
+                  <LoginIcon />
+                </Nav.Link>
+              )}
+              {(userRole === "user" || userRole === "doctor") && (
+                <Nav.Link onClick={removeUser}>
+                  Logout
+                  <LoginIcon />
+                </Nav.Link>
+              )}
             </Nav>
           </Navbar.Collapse>
         </Container>

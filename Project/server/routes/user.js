@@ -70,6 +70,7 @@ router.route("/login").post(async (req, res) => {
     const token = jwt.sign(
       {
         email: user.email,
+        role: user.role,
       },
       "Secret123!"
     );
