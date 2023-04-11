@@ -7,6 +7,7 @@ import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import Row from "react-bootstrap/Row";
 import { useNavigate } from "react-router-dom";
+import jwtDecode from "jwt-decode";
 
 function Login({ closeModal }) {
   const [chooseLogin, setChooseLogin] = useState(true);
@@ -108,6 +109,14 @@ function Login({ closeModal }) {
 
       if (data.user) {
         localStorage.setItem("token", data.user);
+
+        const token = localStorage.getItem("token");
+        if (token) {
+          const user = jwtDecode(token);
+          if (user) {
+            localStorage.setItem("userRole", user.role);
+          }
+        }
         alert("User Login Successful");
         closeModal(false);
         navigate("/user-home");
