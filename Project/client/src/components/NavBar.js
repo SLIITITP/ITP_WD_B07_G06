@@ -45,7 +45,7 @@ function NavBar() {
                   <LoginIcon />
                 </Nav.Link>
               )}
-              {(userRole === "user" || userRole === "doctor") && (
+              {userRole !== null && (
                 <Nav.Link onClick={removeUser}>
                   Logout
                   <LoginIcon />
