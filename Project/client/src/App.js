@@ -1,22 +1,21 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import NavBar from "./components/NavBar";
+import UserMainPage from "./pages/userMainPage";
 import UserHome from "./pages/userHome";
-import MainPage from "./pages/mainPage";
+import AdimnSideBar from "./components/AdminSidebar";
+import AdminMainPage from "./pages/adminMainPage";
+import Staff from "./pages/staff";
 
 const App = () => {
   return (
     <>
       <BrowserRouter>
-        <PublicElement>
-          <NavBar />
-        </PublicElement>
         <Routes>
           <Route
             path="/"
             element={
               <PublicElement>
-                <MainPage />
+                <UserMainPage />
               </PublicElement>
             }
           />
@@ -28,6 +27,24 @@ const App = () => {
               </UserElement>
             }
           />
+          <Route
+            path="/admin"
+            element={
+              <AdminElement>
+                <AdminMainPage />
+              </AdminElement>
+            }
+          />
+          <Route
+            path="/admin/staff"
+            element={
+              <AdminElement>
+                <AdimnSideBar>
+                  <Staff />
+                </AdimnSideBar>
+              </AdminElement>
+            }
+          />
         </Routes>
       </BrowserRouter>
     </>
@@ -35,13 +52,30 @@ const App = () => {
 };
 
 function PublicElement({ children }) {
-  return <>{children}</>;
+  const userType = localStorage.getItem("userRole");
+
+  if (userType === null || userType === "user") {
+    return <>{children}</>;
+  } else {
+    return <></>;
+  }
 }
 
 function UserElement({ children }) {
   const userType = localStorage.getItem("userRole");
 
   if (userType === "user") {
+    return <>{children}</>;
+  } else {
+    alert("Access denied");
+    window.location.replace("/");
+  }
+}
+
+function AdminElement({ children }) {
+  const userType = localStorage.getItem("userRole");
+
+  if (userType === "admin") {
     return <>{children}</>;
   } else {
     alert("Access denied");
