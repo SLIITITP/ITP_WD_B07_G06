@@ -119,7 +119,17 @@ function Login({ closeModal }) {
         }
         alert("User Login Successful");
         closeModal(false);
-        navigate("/user-home");
+        const role = localStorage.getItem("userRole");
+
+        if (role === "doctor") {
+          navigate("/doctor-home");
+        } else if (role === "admin") {
+          navigate("/admin");
+        } else if (role === "pharmacist") {
+          navigate("/pharmacist-home");
+        } else {
+          navigate("/user-home");
+        }
       } else if (data.error === "Invalid email") {
         alert("Invalid email");
       } else if (data.error === "Invalid password") {

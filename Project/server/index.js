@@ -26,6 +26,10 @@ const userRouter = require("./routes/user.js");
 
 app.use("/user", userRouter);
 
+const specialistRouter = require("./routes/specialists.js");
+
+app.use("/specialist", specialistRouter);
+
 app.listen(PORT, () => {
   console.log(`Server is up and running on port number : ${PORT}`);
 });
