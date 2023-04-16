@@ -14,12 +14,22 @@ import AddAppointment from "./components/AddAppointment";
 import AllAppointment from "./components/AllAppointment";
 import UpdateAppointment from "./components/UpdateAppointment";
 import DeleteAppointment from "./components/DeleteAppointment";
+import ManagePatient from './components/ManagePatient';
+import AddMedicine from './components/AddMedicine';
+import ManageMedicine from './components/ManageMedicine';
+import AddInvoice from './components/AddInvoice';
+import ManageInvoice from './components/ManageInvoice';
+import Dashboard from './components/Dashboard';
+import AddPatient from './components/AddPatient';
+
 
 const App = () => {
   return (
     <>
       <BrowserRouter>
+      
         <Routes>
+      
           <Route
             path="/"
             element={
@@ -136,6 +146,23 @@ const App = () => {
               </AdminElement>
             }
           />
+          <Route path="/add" element={<PharmacistElement><AddPatient /></PharmacistElement>} />
+          <Route path="/manage" element={<PharmacistElement><ManagePatient /></PharmacistElement>} />
+          <Route path="/add_medicine" element={<PharmacistElement><AddMedicine /></PharmacistElement>} />
+          <Route path="/manage_medicine" element={<PharmacistElement><ManageMedicine /></PharmacistElement>} />
+          <Route path="/add_invoice" element={<PharmacistElement><AddInvoice /></PharmacistElement>} />
+          <Route path="/manage_invoice" element={<PharmacistElement><ManageInvoice /></PharmacistElement>} />
+          <Route path="/dashboard" element={<PharmacistElement><Dashboard /></PharmacistElement>} />
+
+          <Route
+            path="/manage"
+            element={<PharmacistElement><ManagePatient /></PharmacistElement>}
+          />
+          <Route
+            path="/manage_medicine"
+            element={<PharmacistElement><ManageMedicine /></PharmacistElement>}
+          />
+
         </Routes>
       </BrowserRouter>
     </>
@@ -184,5 +211,17 @@ function DoctorElement({ children }) {
     window.location.replace("/");
   }
 }
+
+function PharmacistElement({ children }) {
+  const userType = localStorage.getItem("userRole");
+
+  if (userType === "pharmacist") {
+    return <>{children}</>;
+  } else {
+    alert("Access denied");
+    window.location.replace("/");
+  }
+}
+
 
 export default App;
