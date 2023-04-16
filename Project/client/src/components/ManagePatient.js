@@ -88,9 +88,9 @@ export default function ManagePatient() {
 
   return (
     <><SideNav/>
-    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
+    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', marginTop: "30px", marginLeft: "220px"}}>
       <h1>Manage Patients</h1>
-      <div className="search-container">
+      <div className="search-container" style={{margin : "30px 0px"}}>
         <input type="text" placeholder="Search Patients" value={searchText} onChange={handleSearch} />
       </div>
       <table className="patient-list-container">

@@ -99,8 +99,8 @@ export default function AddPatient() {
 
   return (
     <><SideNav/>
-    <div className="container">
-      <form onSubmit={handleSubmit}>
+    <div className="container-ph">
+      <form onSubmit={handleSubmit} style={{width: "60%"}}>
       <h1> Add Patient </h1>
         <br></br>
         <br></br>
