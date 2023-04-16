@@ -1,11 +1,23 @@
-.page-header {
+.page-header-am {
     position: relative;
     height: 800px; 
   }
 
-  .text-center {
+  .text-center-am {
     position: absolute;
-    top: 0;
+   margin-top: 50px;
     left: 0%;
-    transform: translateX(150%);
+    transform: translateX(200%);
+  }
+
+  .container-ph2{
+    margin-left: 220px;
+    display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  }
+
+  .container-ph2 .row{
+    margin-bottom: 20px;
   }

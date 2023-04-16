@@ -1,24 +1,24 @@
-table {
+.table-mm table {
   border-collapse: collapse;
-  width: 70%;
+  width: 100%;
 }
 
-th,
-td {
+.table-mm th,
+.table-mm td {
   text-align: left;
   padding: 8px;
   border: 1px solid #ddd; 
 }
 
-tr:nth-child(even) {
+.table-mm tr:nth-child(even) {
   background-color: #f2f2f2;
 }
 
-th {
+.table-mm th {
   background-color: #4caf50;
   color: white;
 }
-
+/* 
 h1 {
   text-align:center;
- }
+ } */

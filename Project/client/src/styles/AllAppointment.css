@@ -1,30 +1,30 @@
-table {
+.table-aa table {
 border-collapse: collapse;
-width: 90%;
+width: 100%;
 }
 
-th,
-td {
+.table-aa th,
+.table-aa td {
 text-align: left;
 padding: 8px;
 border: 1px solid #ddd; 
 }
 
-tr:nth-child(even) {
+.table-aa tr:nth-child(even) {
 background-color: #f2f2f2;
 }
 
-th {
+.table-aa th {
 background-color: #1e90e1;
  color: white;
 }
 
-.btn-update{
+.table-aa .btn-update{
     background-color: #1e0af5;
     border-radius: 10px;
 }
 
-.btn-delete{
+.table-aa .btn-delete{
     background-color: #ea0606;
     border-radius: 10px;
 }

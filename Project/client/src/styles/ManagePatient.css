@@ -1,27 +1,28 @@
-table {
+.patient-list-container table {
   border-collapse: collapse;
-  width: 70%;
+  width: 100%;
   margin-top: 50px;
   margin-left: 50px;
 }
 
-th,
-td {
+.patient-list-container th,
+.patient-list-container td {
   text-align: left;
   padding: 8px;
   border: 1px solid #ddd; 
 }
 
-tr:nth-child(even) {
+.patient-list-container tr:nth-child(even) {
   background-color: #f2f2f2;
 }
 
-th {
+.patient-list-container th {
   background-color: #4caf50;
   color: white;
 }
-input[type="text"],
-input[type="number"] {
+
+.patient-list-container input[type="text"],
+.patient-list-container input[type="number"] {
   width: 100%;
   padding: 8px 12px;
   margin: 8px 0;

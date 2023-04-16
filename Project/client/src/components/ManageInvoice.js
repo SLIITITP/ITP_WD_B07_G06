@@ -76,13 +76,13 @@ export default function ManageInvoice() {
   return (
     <>
     <SideNav/>
-    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: "70px", marginLeft: "220px" }}>
       <h1 style={{ textAlign: 'center' }}>Manage Invoices</h1>
-      <div style={{ marginBottom: '20px' }}>
+      <div style={{ margin: '20px 0px' }}>
         <label htmlFor="search">Search:</label>
         <input type="text" id="search" value={searchTerm} onChange={e => setSearchTerm(e.target.value)} />
       </div>
-      <table style={{ margin: '0 auto' }}>
+      <table style={{ margin: '0 auto' }} className='table-mi'>
         <thead>
           <tr>
             <th>Invoice Number</th>
