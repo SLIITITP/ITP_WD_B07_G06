@@ -21,6 +21,7 @@ function Sidebar({ children }) {
       { path: "/admin", name: "Dashboard", icon: <FaTh /> },
       { path: "/admin/staff", name: "Staff", icon: <FaUserAlt /> },
       { path: "/admin/user-stats", name: "User Stats", icon: <FaUserAlt /> },
+      { path: "/admin/appointment", name: "Appointment", icon: <FaUserAlt /> },
     ];
   } else if (userRole === "doctor") {
     menuIem = [
