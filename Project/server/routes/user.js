@@ -71,6 +71,7 @@ router.route("/login").post(async (req, res) => {
       {
         email: user.email,
         role: user.role,
+        name: user.name,
       },
       "Secret123!"
     );
@@ -81,6 +82,41 @@ router.route("/login").post(async (req, res) => {
       error: "Incorrect Password",
       user: false,
     });
+  }
+});
+
+// user registration
+router.route("/doctor/register").post(async (req, res) => {
+  const name = req.body.name;
+  const email = req.body.email;
+  const password = req.body.password;
+
+  // server-side registration form validation
+  if (name.length < 2) {
+    return res.json({ status: "error", error: "Invalid name" });
+  }
+  if (!validator.validate(email.toLowerCase())) {
+    return res.json({ status: "error", error: "Invalid email" });
+  }
+  if (password.length < 5) {
+    return res.json({ status: "error", error: "Invalid password" });
+  }
+
+  // create new user
+  try {
+    // hashing password
+    const newPassword = await bcrypt.hash(req.body.password, 10);
+
+    await User.create({
+      name: req.body.name,
+      email: req.body.email,
+      password: newPassword,
+      role: "doctor",
+    });
+
+    res.json({ status: "ok" });
+  } catch (error) {
+    res.json({ status: "error", error: "Error! Email already exists" });
   }
 });
 

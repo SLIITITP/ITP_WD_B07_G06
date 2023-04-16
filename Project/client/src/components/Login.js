@@ -115,6 +115,8 @@ function Login({ closeModal }) {
           const user = jwtDecode(token);
           if (user) {
             localStorage.setItem("userRole", user.role);
+            localStorage.setItem("userEmail", user.email);
+            localStorage.setItem("userName", user.name);
           }
         }
         alert("User Login Successful");

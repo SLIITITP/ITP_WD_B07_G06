@@ -64,52 +64,56 @@ function Staff() {
         <div style={{ marginBottom: "50px" }}>
           <h1 style={{ textAlign: "center" }}>Staff Details</h1>
         </div>
-        <div style={{ marginBottom: "50px" }}>
-          <button
-            type="button"
-            className="btn btn-outline-primary"
-            onClick={() => setSelected("view")}
-          >
-            <FaTh className="icon" />
-            <div className="text">View</div>
-          </button>
-          <button
-            type="button"
-            className="btn btn-outline-primary"
-            onClick={() => setSelected("add")}
-          >
-            <FaPlus className="icon" />
-            <div className="text">Add</div>
-          </button>
-          <button
-            type="button"
-            className="btn btn-outline-primary"
-            onClick={() => setSelected("stats")}
-          >
-            <FaChartLine className="icon" />
-            <div className="text">Stats</div>
-          </button>
-          <form noValidate onSubmit={handleSearch}>
-            <span
-              style={{
-                float: "right",
-                display: "flex",
-                height: "40px",
-                marginTop: "15px",
-              }}
+        <div style={{ marginBottom: "50px", display: "flex" }}>
+          <div>
+            <button
+              type="button"
+              className="btn btn-outline-primary"
+              onClick={() => setSelected("view")}
             >
-              <input
-                className="form-control"
-                onChange={(event) => {
-                  setName(event.target.value);
+              <FaTh className="icon" />
+              <div className="text">View</div>
+            </button>
+            <button
+              type="button"
+              className="btn btn-outline-primary"
+              onClick={() => setSelected("add")}
+            >
+              <FaPlus className="icon" />
+              <div className="text">Add</div>
+            </button>
+            <button
+              type="button"
+              className="btn btn-outline-primary"
+              onClick={() => setSelected("stats")}
+            >
+              <FaChartLine className="icon" />
+              <div className="text">Stats</div>
+            </button>
+          </div>
+          <div style={{ marginLeft: "auto" }}>
+            <form noValidate onSubmit={handleSearch}>
+              <span
+                style={{
+                  float: "right",
+                  display: "flex",
+                  height: "40px",
+                  marginTop: "15px",
                 }}
-                required
-              />
-              <button className="btn btn-outline-success" type="submit">
-                <FaSearch />
-              </button>
-            </span>
-          </form>
+              >
+                <input
+                  className="form-control"
+                  onChange={(event) => {
+                    setName(event.target.value);
+                  }}
+                  required
+                />
+                <button className="btn btn-outline-success" type="submit">
+                  <FaSearch />
+                </button>
+              </span>
+            </form>
+          </div>
         </div>
       </div>
       {details !== {} && show === true && (

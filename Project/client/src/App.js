@@ -4,7 +4,12 @@ import UserMainPage from "./pages/userMainPage";
 import UserHome from "./pages/userHome";
 import AdimnSideBar from "./components/AdminSidebar";
 import AdminMainPage from "./pages/adminMainPage";
+import DoctorMainPage from "./pages/doctorMainPage";
+import CheckReports from "./pages/checkReports";
+import MedicalProfile from "./pages/medicalProfile";
 import Staff from "./pages/staff";
+import Report from "./components/Report";
+import UserStats from "./components/UserStats";
 
 const App = () => {
   return (
@@ -33,6 +38,50 @@ const App = () => {
               <AdminElement>
                 <AdminMainPage />
               </AdminElement>
+            }
+          />
+          <Route
+            path="/admin/user-stats"
+            element={
+              <AdminElement>
+                <AdimnSideBar>
+                  <UserStats />
+                </AdimnSideBar>
+              </AdminElement>
+            }
+          />
+          <Route
+            path="/doctor-home"
+            element={
+              <DoctorElement>
+                <DoctorMainPage />
+              </DoctorElement>
+            }
+          />
+          <Route
+            path="/report"
+            element={
+              <DoctorElement>
+                <AdimnSideBar>
+                  <Report />
+                </AdimnSideBar>
+              </DoctorElement>
+            }
+          />
+          <Route
+            path="/user-check-reports"
+            element={
+              <UserElement>
+                <CheckReports />
+              </UserElement>
+            }
+          />
+          <Route
+            path="/user-medical-profile"
+            element={
+              <UserElement>
+                <MedicalProfile />
+              </UserElement>
             }
           />
           <Route
@@ -76,6 +125,17 @@ function AdminElement({ children }) {
   const userType = localStorage.getItem("userRole");
 
   if (userType === "admin") {
+    return <>{children}</>;
+  } else {
+    alert("Access denied");
+    window.location.replace("/");
+  }
+}
+
+function DoctorElement({ children }) {
+  const userType = localStorage.getItem("userRole");
+
+  if (userType === "doctor") {
     return <>{children}</>;
   } else {
     alert("Access denied");

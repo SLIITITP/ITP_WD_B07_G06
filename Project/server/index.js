@@ -30,6 +30,10 @@ const specialistRouter = require("./routes/specialists.js");
 
 app.use("/specialist", specialistRouter);
 
+const reportRouter = require("./routes/report.js");
+
+app.use("/report", reportRouter);
+
 app.listen(PORT, () => {
   console.log(`Server is up and running on port number : ${PORT}`);
 });

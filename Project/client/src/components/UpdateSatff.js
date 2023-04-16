@@ -30,10 +30,16 @@ function UpdateStaff({ closeModal, details }) {
 
       const data = await response.json();
 
-      if (data.status === "User updated") {
-        alert("User updated");
+      if (data.status === "Specialist updated") {
+        alert("Specialist updated");
         closeModal(true);
         window.location.reload(false);
+      } else if (data.error === "Invalid name") {
+        alert("Invalid name");
+      } else if (data.error === "Invalid specialization") {
+        alert("Invalid specialization");
+      } else if (data.error === "Invalid experience") {
+        alert("Invalid experience");
       }
     }
 
@@ -71,6 +77,22 @@ function UpdateStaff({ closeModal, details }) {
                   </Form.Control.Feedback>
                   <Form.Control.Feedback></Form.Control.Feedback>
                 </Form.Group>
+                <Form.Group as={Col} md="12" controlId="email">
+                  <Form.Label>Email</Form.Label>
+                  <Form.Control
+                    disabled
+                    type="text"
+                    placeholder={details.email}
+                  />
+                </Form.Group>
+                <Form.Group as={Col} md="12" controlId="nic">
+                  <Form.Label>NIC</Form.Label>
+                  <Form.Control
+                    disabled
+                    type="text"
+                    placeholder={details.nic}
+                  />
+                </Form.Group>
                 <Form.Group as={Col} md="12" controlId="specialization">
                   <Form.Label>Specialization</Form.Label>
                   <Form.Control
@@ -80,6 +102,10 @@ function UpdateStaff({ closeModal, details }) {
                     placeholder={details.specialization}
                     aria-describedby="inputGroupPrepend"
                     onChange={(event) => setSpecialization(event.target.value)}
+                    onMouseOut={() => {
+                      specialization.length === 0 &&
+                        setSpecialization(details.specialization);
+                    }}
                     isInvalid={specialization.length < 3}
                     isValid={specialization.length >= 3}
                   />
@@ -97,6 +123,10 @@ function UpdateStaff({ closeModal, details }) {
                     type="text"
                     placeholder={details.experience}
                     onChange={(event) => setExperience(event.target.value)}
+                    onMouseOut={() => {
+                      experience.length === 0 &&
+                        setExperience(details.experience);
+                    }}
                     isValid={experience.length >= 1}
                     isInvalid={experience.length < 1}
                   />

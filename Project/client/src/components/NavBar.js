@@ -26,13 +26,19 @@ function NavBar() {
         expand="lg"
       >
         <Container fluid>
-          <Navbar.Brand href="#">HCMS</Navbar.Brand>
+          <Navbar.Brand href="/">HCMS</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto my-2 my-lg-0" style={{ fontSize: "18px" }}>
-              <Nav.Link href="#action1">Home</Nav.Link>
+              <Nav.Link href="/">Home</Nav.Link>
               <Nav.Link href="#action2">About Us</Nav.Link>
               <Nav.Link href="#action2">Contact Us</Nav.Link>
+              {userRole === "user" && (
+                <Nav.Link href="/user-check-reports">Reports</Nav.Link>
+              )}
+              {userRole === "user" && (
+                <Nav.Link href="/user-medical-profile">Profile</Nav.Link>
+              )}
             </Nav>
             <Nav style={{ fontSize: "18px" }}>
               {userRole == null && (
