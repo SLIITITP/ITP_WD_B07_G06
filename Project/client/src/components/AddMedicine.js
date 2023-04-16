@@ -71,14 +71,14 @@ export default function AddMedicine() {
   return (
     <>
     <SideNav/>
-    <div className="container">
-       <div className="page-header">
-       <div className="text-center pt-5">
-        <h1>Add Medicine</h1>
+    <div className="container-ph2">
+       <div className="page-header-am">
+       <div className="text-center-am pt-5">
+        <h1 style={{textAlign: "center"}}>Add Medicine</h1>
       </div>
       </div>
       
-      <form onSubmit={sendData}>
+      <form onSubmit={sendData} style={{width: "60%"}}>
         <div className="row">
           <div className="col-md-6 form-group">
             <label className="font-weight-bold" htmlFor="medicineName">

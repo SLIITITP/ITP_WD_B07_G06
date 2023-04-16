@@ -30,9 +30,9 @@ export default function AllAppointment(){
     }
 
     return (
-        <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+        <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: "30px"}}>
             <h1 style={{textAlign: 'center'}}>All Appointment</h1>
-            <table style={{margin: '0 auto'}}>
+            <table className='table-aa' style={{margin: '30px auto'}}>
                 <thead>
 
                     {/* <tr>

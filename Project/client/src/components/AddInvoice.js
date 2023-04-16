@@ -131,10 +131,10 @@ export default function AddInvoice() {
    
 <>
 <SideNav />
-    <div className="container">
+    <div className="container-ph1">
       
-      <form onSubmit={sendData}>
-        <h1> Add Invoice </h1>
+      <form onSubmit={sendData} style={{width: "60%",}}>
+        <h1 className="ai"> Add Invoice </h1>
         <br></br>
         <div className="row">
           <div className="col-md-6 form-group">

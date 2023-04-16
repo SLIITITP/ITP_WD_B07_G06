@@ -36,7 +36,7 @@ export default function AddAppointment(){
     return(
         <>
         <NavBar/>
-        <div className="container">
+        <div className="container-app">
             <form onSubmit={sendData} className="make-appointment-page">
                 <div className="mb-3">
                     <label for="pname" className="form-label">Patient Name</label>

@@ -64,7 +64,7 @@ export default function DeleteAppointment() {
 
   return (
     
-      <div className="container">
+      <div className="container-app">
       <form onSubmit={handleDelete} className="make-appointment-page">
         <div className="mb-3">
                 <label for="id" className="form-label">ID</label>
