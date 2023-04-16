@@ -34,6 +34,10 @@ const reportRouter = require("./routes/report.js");
 
 app.use("/report", reportRouter);
 
+const appointmentRouter = require("./routes/appointments.js");
+
+app.use("/appointment", appointmentRouter);
+
 app.listen(PORT, () => {
   console.log(`Server is up and running on port number : ${PORT}`);
 });
