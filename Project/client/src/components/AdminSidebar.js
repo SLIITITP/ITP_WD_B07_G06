@@ -4,6 +4,9 @@ import { NavLink } from "react-router-dom";
 import "../styles/adminSideBar.css";
 
 function Sidebar({ children }) {
+  const userRole = localStorage.getItem("userRole");
+  let menuIem = [];
+
   function adminLogout() {
     localStorage.removeItem("userRole");
     localStorage.removeItem("token");
@@ -13,10 +16,19 @@ function Sidebar({ children }) {
   const [isOpen, setIsOpen] = useState(true);
   const toggle = () => setIsOpen(!isOpen);
 
-  const menuIem = [
-    { path: "/admin", name: "Dashboard", icon: <FaTh /> },
-    { path: "/admin/staff", name: "Staff", icon: <FaUserAlt /> },
-  ];
+  if (userRole === "admin") {
+    menuIem = [
+      { path: "/admin", name: "Dashboard", icon: <FaTh /> },
+      { path: "/admin/staff", name: "Staff", icon: <FaUserAlt /> },
+      { path: "/admin/user-stats", name: "User Stats", icon: <FaUserAlt /> },
+    ];
+  } else if (userRole === "doctor") {
+    menuIem = [
+      { path: "/report", name: "Report", icon: <FaTh /> },
+      { path: "/quiz", name: "Quiz", icon: <FaUserAlt /> },
+    ];
+  }
+
   return (
     <div className="container1">
       <div style={{ width: isOpen ? "250px" : "50px" }} className="sidebar">

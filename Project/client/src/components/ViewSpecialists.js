@@ -49,6 +49,8 @@ export default function ViewSpecialists() {
         <thead>
           <tr>
             <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">NIC</th>
             <th scope="col">Specialization</th>
             <th scope="col">Experience</th>
             <th scope="col" colSpan={2}>
@@ -61,6 +63,8 @@ export default function ViewSpecialists() {
             return (
               <tr key={index}>
                 <td>{staffMember.name}</td>
+                <td>{staffMember.email}</td>
+                <td>{staffMember.nic}</td>
                 <td>{staffMember.specialization}</td>
                 <td>{staffMember.experience}</td>
                 <td>

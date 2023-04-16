@@ -1,26 +1,48 @@
 const router = require("express").Router();
+const validator = require("email-validator");
 
 let Specialist = require("../models/Specialist");
 
 router.route("/add").post((req, res) => {
   const name = req.body.name;
+  const email = req.body.email;
+  const nic = req.body.nic;
   const specialization = req.body.specialization;
   const experience = Number(req.body.experience);
+  // const photoURL = req.body.photoURL;
 
-  const newSpecialist = new Specialist({
-    name,
-    specialization,
-    experience,
-  });
+  if (name.length < 2) {
+    return res.json({ status: "error", error: "Invalid name" });
+  }
+  if (!validator.validate(email.toLowerCase())) {
+    return res.json({ status: "error", error: "Invalid email" });
+  }
+  if (!/^([0-9]{9}[x|X|v|V]|[0-9]{12})$/i.test(nic)) {
+    return res.json({ status: "error", error: "Invalid nic" });
+  }
+  if (specialization.length < 1) {
+    return res.json({ status: "error", error: "Invalid specialization" });
+  }
+  if (experience.length < 1) {
+    return res.json({ status: "error", error: "Invalid experience" });
+  }
 
-  newSpecialist
-    .save()
-    .then(() => {
-      res.json("Student Added");
-    })
-    .catch((err) => {
-      console.log(err);
+  try {
+    const newSpecialist = new Specialist({
+      name,
+      email,
+      nic,
+      specialization,
+      experience,
+      // photoURL,
     });
+
+    newSpecialist.save().then(() => {
+      res.json({ status: "ok" });
+    });
+  } catch (error) {
+    console.log(error.message);
+  }
 });
 
 router.route("/all-details").get(async (req, res) => {
@@ -54,22 +76,29 @@ router.route("/update/:id").put(async (req, res) => {
   const specialization = req.body.specialization;
   const experience = req.body.experience;
 
-  const updateStaff = {
-    name,
-    specialization,
-    experience,
-  };
+  if (name.length < 2) {
+    return res.json({ status: "error", error: "Invalid name" });
+  }
+  if (specialization.length < 1) {
+    return res.json({ status: "error", error: "Invalid specialization" });
+  }
+  if (experience.length < 1) {
+    return res.json({ status: "error", error: "Invalid experience" });
+  }
 
-  await Specialist.findByIdAndUpdate(id, updateStaff)
-    .then(() => {
-      res.json({ status: "User updated" });
-    })
-    .catch((err) => {
-      console.log(err);
-      res
-        .status(500)
-        .send({ status: "error with updating data", error: err.message });
+  try {
+    const updateStaff = {
+      name,
+      specialization,
+      experience,
+    };
+
+    await Specialist.findByIdAndUpdate(id, updateStaff).then(() => {
+      res.json({ status: "Specialist updated" });
     });
+  } catch (error) {
+    console.log(error.message);
+  }
 });
 
 router.route("/get/:id").get(async (req, res) => {
