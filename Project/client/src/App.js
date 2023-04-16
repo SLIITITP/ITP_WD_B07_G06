@@ -10,6 +10,10 @@ import MedicalProfile from "./pages/medicalProfile";
 import Staff from "./pages/staff";
 import Report from "./components/Report";
 import UserStats from "./components/UserStats";
+import AddAppointment from "./components/AddAppointment";
+import AllAppointment from "./components/AllAppointment";
+import UpdateAppointment from "./components/UpdateAppointment";
+import DeleteAppointment from "./components/DeleteAppointment";
 
 const App = () => {
   return (
@@ -77,6 +81,14 @@ const App = () => {
             }
           />
           <Route
+            path="/user-appointment"
+            element={
+              <PublicElement>
+                <AddAppointment/>
+              </PublicElement>
+            }
+          />
+          <Route
             path="/user-medical-profile"
             element={
               <UserElement>
@@ -90,6 +102,36 @@ const App = () => {
               <AdminElement>
                 <AdimnSideBar>
                   <Staff />
+                </AdimnSideBar>
+              </AdminElement>
+            }
+          />
+          <Route
+            path="/admin/appointment"
+            element={
+              <AdminElement>
+                <AdimnSideBar>
+                  <AllAppointment/>
+                </AdimnSideBar>
+              </AdminElement>
+            }
+          />
+          <Route
+            path="/update/:id"
+            element={
+              <AdminElement>
+                <AdimnSideBar>
+                  <UpdateAppointment/>
+                </AdimnSideBar>
+              </AdminElement>
+            }
+          />
+          <Route
+            path="/delete/:id"
+            element={
+              <AdminElement>
+                <AdimnSideBar>
+                  <DeleteAppointment/>
                 </AdimnSideBar>
               </AdminElement>
             }
