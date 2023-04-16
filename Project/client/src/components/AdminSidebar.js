@@ -22,11 +22,13 @@ function Sidebar({ children }) {
       { path: "/admin/staff", name: "Staff", icon: <FaUserAlt /> },
       { path: "/admin/user-stats", name: "User Stats", icon: <FaUserAlt /> },
       { path: "/admin/appointment", name: "Appointment", icon: <FaUserAlt /> },
+      { path: "/admin/schedule", name: "Schedules", icon: <FaUserAlt /> },
     ];
   } else if (userRole === "doctor") {
     menuIem = [
       { path: "/report", name: "Report", icon: <FaTh /> },
       { path: "/quiz", name: "Quiz", icon: <FaUserAlt /> },
+      { path: "/schedule", name: "Schedule", icon: <FaUserAlt /> },
     ];
   }
 
