@@ -8,6 +8,16 @@ const specialistSchema = new Schema(
       type: String,
       required: true,
     },
+    email: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+    nic: {
+      type: String,
+      required: true,
+      unique: true,
+    },
     specialization: {
       type: String,
       required: true,
@@ -15,6 +25,9 @@ const specialistSchema = new Schema(
     experience: {
       type: Number,
       required: true,
+    },
+    photoURL: {
+      type: String,
     },
   },
   { collection: "specialist" }
