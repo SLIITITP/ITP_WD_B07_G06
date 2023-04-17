@@ -25,6 +25,9 @@ import GetSchedules from "./components/ViewAllSchedules";
 import UpdateSchedule from "./components/UpdateSchedule";
 import DeleteSchedule from "./components/DeleteSchedule";
 import SearchSchedule from "./components/SearchSchedules";
+import Addgoal from "./components/Addgoal";
+import Weeklygoal from "./components/Weeklygoal";
+import Updategoal from "./components/Updategoal";
 
 const App = () => {
   return (
@@ -44,6 +47,30 @@ const App = () => {
             element={
               <UserElement>
                 <UserHome />
+              </UserElement>
+            }
+          />
+          <Route
+            path="/user-goal"
+            element={
+              <UserElement>
+                <Addgoal />
+              </UserElement>
+            }
+          />
+          <Route
+            path="/getgoal/:id"
+            element={
+              <UserElement>
+                <Weeklygoal />
+              </UserElement>
+            }
+          />
+          <Route
+            path="/updategoal/:id"
+            element={
+              <UserElement>
+                <Updategoal />
               </UserElement>
             }
           />
