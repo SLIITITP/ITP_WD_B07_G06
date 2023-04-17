@@ -7,7 +7,6 @@ const App = () => {
   return (
     <>
       <BrowserRouter>
-        <NavBar />
         <Routes>
           <Route path="/user-home" element={<UserHome />} />
         </Routes>
