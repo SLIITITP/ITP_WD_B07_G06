@@ -38,6 +38,9 @@ function NavBar() {
                 <Nav.Link href="/user-check-reports">Reports</Nav.Link>
               )}
               {userRole === "user" && (
+                <Nav.Link href="/user-goal">Plans</Nav.Link>
+              )}
+              {userRole === "user" && (
                 <Nav.Link href="/user-medical-profile">Profile</Nav.Link>
               )}
             </Nav>

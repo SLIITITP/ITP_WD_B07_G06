@@ -47,6 +47,15 @@ app.use("/pharmacist", pharmacistRouter);
 app.use("/invoice", invoiceRouter);
 app.use("/medicine", medicineRouter);
 
+
+const scheduleRouter = require("./routes/schedules.js")
+
+app.use("/schedule",scheduleRouter);
+
+const goalsRouter = require("./routes/goals.js");
+
+app.use("/goals", goalsRouter);
+
 app.listen(PORT, () => {
   console.log(`Server is up and running on port number : ${PORT}`);
 });

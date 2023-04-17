@@ -13,13 +13,21 @@ import AddAppointment from "./components/AddAppointment";
 import AllAppointment from "./components/AllAppointment";
 import UpdateAppointment from "./components/UpdateAppointment";
 import DeleteAppointment from "./components/DeleteAppointment";
-import ManagePatient from "./components/ManagePatient";
-import AddMedicine from "./components/AddMedicine";
-import ManageMedicine from "./components/ManageMedicine";
-import AddInvoice from "./components/AddInvoice";
-import ManageInvoice from "./components/ManageInvoice";
-import Dashboard from "./components/Dashboard";
-import AddPatient from "./components/AddPatient";
+import ManagePatient from './components/ManagePatient';
+import AddMedicine from './components/AddMedicine';
+import ManageMedicine from './components/ManageMedicine';
+import AddInvoice from './components/AddInvoice';
+import ManageInvoice from './components/ManageInvoice';
+import Dashboard from './components/Dashboard';
+import AddPatient from './components/AddPatient';
+import AddSchedule from "./components/AddSchedule";
+import GetSchedules from "./components/ViewAllSchedules";
+import UpdateSchedule from "./components/UpdateSchedule";
+import DeleteSchedule from "./components/DeleteSchedule";
+import SearchSchedule from "./components/SearchSchedules";
+import Addgoal from "./components/Addgoal";
+import Weeklygoal from "./components/Weeklygoal";
+import Updategoal from "./components/Updategoal";
 
 const App = () => {
   return (
@@ -39,6 +47,30 @@ const App = () => {
             element={
               <UserElement>
                 <UserHome />
+              </UserElement>
+            }
+          />
+          <Route
+            path="/user-goal"
+            element={
+              <UserElement>
+                <Addgoal />
+              </UserElement>
+            }
+          />
+          <Route
+            path="/getgoal/:id"
+            element={
+              <UserElement>
+                <Weeklygoal />
+              </UserElement>
+            }
+          />
+          <Route
+            path="/updategoal/:id"
+            element={
+              <UserElement>
+                <Updategoal />
               </UserElement>
             }
           />
@@ -70,6 +102,11 @@ const App = () => {
               </DoctorElement>
             }
           />
+          <Route path="/schedule" element={<DoctorElement><AdimnSideBar><AddSchedule /></AdimnSideBar></DoctorElement>}/>
+          <Route path="/admin/schedule" element={<AdminElement><AdimnSideBar><GetSchedules/></AdimnSideBar></AdminElement>}/>
+          <Route path="/update-schedule/:id"  element={<AdminElement><AdimnSideBar><UpdateSchedule/></AdimnSideBar></AdminElement>}/>
+          <Route path ="/delete-schedule/:id" element={<AdminElement><AdimnSideBar><DeleteSchedule/></AdimnSideBar></AdminElement>}/>
+          <Route path = "/admin/search-schedule"  element={<AdminElement><AdimnSideBar><SearchSchedule /></AdimnSideBar></AdminElement>}/>
           <Route
             path="/user-check-reports"
             element={
