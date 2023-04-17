@@ -3,7 +3,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import UserMainPage from "./pages/userMainPage";
 import UserHome from "./pages/userHome";
 import AdimnSideBar from "./components/AdminSidebar";
-import AdminMainPage from "./pages/adminMainPage";
 import DoctorMainPage from "./pages/doctorMainPage";
 import CheckReports from "./pages/checkReports";
 import MedicalProfile from "./pages/medicalProfile";
@@ -27,14 +26,11 @@ import UpdateSchedule from "./components/UpdateSchedule";
 import DeleteSchedule from "./components/DeleteSchedule";
 import SearchSchedule from "./components/SearchSchedules";
 
-
 const App = () => {
   return (
     <>
       <BrowserRouter>
-      
         <Routes>
-      
           <Route
             path="/"
             element={
@@ -49,14 +45,6 @@ const App = () => {
               <UserElement>
                 <UserHome />
               </UserElement>
-            }
-          />
-          <Route
-            path="/admin"
-            element={
-              <AdminElement>
-                <AdminMainPage />
-              </AdminElement>
             }
           />
           <Route
@@ -104,7 +92,7 @@ const App = () => {
             path="/user-appointment"
             element={
               <PublicElement>
-                <AddAppointment/>
+                <AddAppointment />
               </PublicElement>
             }
           />
@@ -131,7 +119,7 @@ const App = () => {
             element={
               <AdminElement>
                 <AdimnSideBar>
-                  <AllAppointment/>
+                  <AllAppointment />
                 </AdimnSideBar>
               </AdminElement>
             }
@@ -141,7 +129,7 @@ const App = () => {
             element={
               <AdminElement>
                 <AdimnSideBar>
-                  <UpdateAppointment/>
+                  <UpdateAppointment />
                 </AdimnSideBar>
               </AdminElement>
             }
@@ -151,28 +139,84 @@ const App = () => {
             element={
               <AdminElement>
                 <AdimnSideBar>
-                  <DeleteAppointment/>
+                  <DeleteAppointment />
                 </AdimnSideBar>
               </AdminElement>
             }
           />
-          <Route path="/add" element={<PharmacistElement><AddPatient /></PharmacistElement>} />
-          <Route path="/manage" element={<PharmacistElement><ManagePatient /></PharmacistElement>} />
-          <Route path="/add_medicine" element={<PharmacistElement><AddMedicine /></PharmacistElement>} />
-          <Route path="/manage_medicine" element={<PharmacistElement><ManageMedicine /></PharmacistElement>} />
-          <Route path="/add_invoice" element={<PharmacistElement><AddInvoice /></PharmacistElement>} />
-          <Route path="/manage_invoice" element={<PharmacistElement><ManageInvoice /></PharmacistElement>} />
-          <Route path="/dashboard" element={<PharmacistElement><Dashboard /></PharmacistElement>} />
-
+          <Route
+            path="/add"
+            element={
+              <PharmacistElement>
+                <AddPatient />
+              </PharmacistElement>
+            }
+          />
           <Route
             path="/manage"
-            element={<PharmacistElement><ManagePatient /></PharmacistElement>}
+            element={
+              <PharmacistElement>
+                <ManagePatient />
+              </PharmacistElement>
+            }
+          />
+          <Route
+            path="/add_medicine"
+            element={
+              <PharmacistElement>
+                <AddMedicine />
+              </PharmacistElement>
+            }
           />
           <Route
             path="/manage_medicine"
-            element={<PharmacistElement><ManageMedicine /></PharmacistElement>}
+            element={
+              <PharmacistElement>
+                <ManageMedicine />
+              </PharmacistElement>
+            }
+          />
+          <Route
+            path="/add_invoice"
+            element={
+              <PharmacistElement>
+                <AddInvoice />
+              </PharmacistElement>
+            }
+          />
+          <Route
+            path="/manage_invoice"
+            element={
+              <PharmacistElement>
+                <ManageInvoice />
+              </PharmacistElement>
+            }
+          />
+          <Route
+            path="/dashboard"
+            element={
+              <PharmacistElement>
+                <Dashboard />
+              </PharmacistElement>
+            }
           />
 
+          <Route
+            path="/manage"
+            element={
+              <PharmacistElement>
+                <ManagePatient />
+              </PharmacistElement>
+            }
+          />
+          <Route
+            path="/manage_medicine"
+            element={
+              <PharmacistElement>
+                <ManageMedicine />
+              </PharmacistElement>
+            }
+          />
         </Routes>
       </BrowserRouter>
     </>
@@ -232,6 +276,5 @@ function PharmacistElement({ children }) {
     window.location.replace("/");
   }
 }
-
 
 export default App;
