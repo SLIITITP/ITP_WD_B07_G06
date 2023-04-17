@@ -18,7 +18,7 @@ function Sidebar({ children }) {
 
   if (userRole === "admin") {
     menuIem = [
-      { path: "/admin", name: "Dashboard", icon: <FaTh /> },
+      // { path: "/admin", name: "Dashboard", icon: <FaTh /> },
       { path: "/admin/staff", name: "Staff", icon: <FaUserAlt /> },
       { path: "/admin/user-stats", name: "User Stats", icon: <FaUserAlt /> },
       { path: "/admin/appointment", name: "Appointment", icon: <FaUserAlt /> },

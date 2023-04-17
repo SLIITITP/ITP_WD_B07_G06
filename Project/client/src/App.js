@@ -3,7 +3,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import UserMainPage from "./pages/userMainPage";
 import UserHome from "./pages/userHome";
 import AdimnSideBar from "./components/AdminSidebar";
-import AdminMainPage from "./pages/adminMainPage";
 import DoctorMainPage from "./pages/doctorMainPage";
 import CheckReports from "./pages/checkReports";
 import MedicalProfile from "./pages/medicalProfile";
@@ -14,22 +13,19 @@ import AddAppointment from "./components/AddAppointment";
 import AllAppointment from "./components/AllAppointment";
 import UpdateAppointment from "./components/UpdateAppointment";
 import DeleteAppointment from "./components/DeleteAppointment";
-import ManagePatient from './components/ManagePatient';
-import AddMedicine from './components/AddMedicine';
-import ManageMedicine from './components/ManageMedicine';
-import AddInvoice from './components/AddInvoice';
-import ManageInvoice from './components/ManageInvoice';
-import Dashboard from './components/Dashboard';
-import AddPatient from './components/AddPatient';
-
+import ManagePatient from "./components/ManagePatient";
+import AddMedicine from "./components/AddMedicine";
+import ManageMedicine from "./components/ManageMedicine";
+import AddInvoice from "./components/AddInvoice";
+import ManageInvoice from "./components/ManageInvoice";
+import Dashboard from "./components/Dashboard";
+import AddPatient from "./components/AddPatient";
 
 const App = () => {
   return (
     <>
       <BrowserRouter>
-      
         <Routes>
-      
           <Route
             path="/"
             element={
@@ -44,14 +40,6 @@ const App = () => {
               <UserElement>
                 <UserHome />
               </UserElement>
-            }
-          />
-          <Route
-            path="/admin"
-            element={
-              <AdminElement>
-                <AdminMainPage />
-              </AdminElement>
             }
           />
           <Route
@@ -94,7 +82,7 @@ const App = () => {
             path="/user-appointment"
             element={
               <PublicElement>
-                <AddAppointment/>
+                <AddAppointment />
               </PublicElement>
             }
           />
@@ -121,7 +109,7 @@ const App = () => {
             element={
               <AdminElement>
                 <AdimnSideBar>
-                  <AllAppointment/>
+                  <AllAppointment />
                 </AdimnSideBar>
               </AdminElement>
             }
@@ -131,7 +119,7 @@ const App = () => {
             element={
               <AdminElement>
                 <AdimnSideBar>
-                  <UpdateAppointment/>
+                  <UpdateAppointment />
                 </AdimnSideBar>
               </AdminElement>
             }
@@ -141,28 +129,84 @@ const App = () => {
             element={
               <AdminElement>
                 <AdimnSideBar>
-                  <DeleteAppointment/>
+                  <DeleteAppointment />
                 </AdimnSideBar>
               </AdminElement>
             }
           />
-          <Route path="/add" element={<PharmacistElement><AddPatient /></PharmacistElement>} />
-          <Route path="/manage" element={<PharmacistElement><ManagePatient /></PharmacistElement>} />
-          <Route path="/add_medicine" element={<PharmacistElement><AddMedicine /></PharmacistElement>} />
-          <Route path="/manage_medicine" element={<PharmacistElement><ManageMedicine /></PharmacistElement>} />
-          <Route path="/add_invoice" element={<PharmacistElement><AddInvoice /></PharmacistElement>} />
-          <Route path="/manage_invoice" element={<PharmacistElement><ManageInvoice /></PharmacistElement>} />
-          <Route path="/dashboard" element={<PharmacistElement><Dashboard /></PharmacistElement>} />
-
+          <Route
+            path="/add"
+            element={
+              <PharmacistElement>
+                <AddPatient />
+              </PharmacistElement>
+            }
+          />
           <Route
             path="/manage"
-            element={<PharmacistElement><ManagePatient /></PharmacistElement>}
+            element={
+              <PharmacistElement>
+                <ManagePatient />
+              </PharmacistElement>
+            }
+          />
+          <Route
+            path="/add_medicine"
+            element={
+              <PharmacistElement>
+                <AddMedicine />
+              </PharmacistElement>
+            }
           />
           <Route
             path="/manage_medicine"
-            element={<PharmacistElement><ManageMedicine /></PharmacistElement>}
+            element={
+              <PharmacistElement>
+                <ManageMedicine />
+              </PharmacistElement>
+            }
+          />
+          <Route
+            path="/add_invoice"
+            element={
+              <PharmacistElement>
+                <AddInvoice />
+              </PharmacistElement>
+            }
+          />
+          <Route
+            path="/manage_invoice"
+            element={
+              <PharmacistElement>
+                <ManageInvoice />
+              </PharmacistElement>
+            }
+          />
+          <Route
+            path="/dashboard"
+            element={
+              <PharmacistElement>
+                <Dashboard />
+              </PharmacistElement>
+            }
           />
 
+          <Route
+            path="/manage"
+            element={
+              <PharmacistElement>
+                <ManagePatient />
+              </PharmacistElement>
+            }
+          />
+          <Route
+            path="/manage_medicine"
+            element={
+              <PharmacistElement>
+                <ManageMedicine />
+              </PharmacistElement>
+            }
+          />
         </Routes>
       </BrowserRouter>
     </>
@@ -222,6 +266,5 @@ function PharmacistElement({ children }) {
     window.location.replace("/");
   }
 }
-
 
 export default App;

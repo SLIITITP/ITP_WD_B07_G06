@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "../styles/staff.css";
-import { FaTh, FaPlus, FaChartLine, FaSearch } from "react-icons/fa";
+import { FaTh, FaPlus, FaSearch } from "react-icons/fa";
 import AddSpecialist from "../components/AddSpecialist";
 import ViewSpecialists from "../components/ViewSpecialists";
 import UpdateSatff from "../components/UpdateSatff";
@@ -82,38 +82,40 @@ function Staff() {
               <FaPlus className="icon" />
               <div className="text">Add</div>
             </button>
-            <button
+            {/* <button
               type="button"
               className="btn btn-outline-primary"
               onClick={() => setSelected("stats")}
             >
               <FaChartLine className="icon" />
               <div className="text">Stats</div>
-            </button>
+            </button> */}
           </div>
-          <div style={{ marginLeft: "auto" }}>
-            <form noValidate onSubmit={handleSearch}>
-              <span
-                style={{
-                  float: "right",
-                  display: "flex",
-                  height: "40px",
-                  marginTop: "15px",
-                }}
-              >
-                <input
-                  className="form-control"
-                  onChange={(event) => {
-                    setName(event.target.value);
+          {selected === "view" && (
+            <div style={{ marginLeft: "auto" }}>
+              <form noValidate onSubmit={handleSearch}>
+                <span
+                  style={{
+                    float: "right",
+                    display: "flex",
+                    height: "40px",
+                    marginTop: "15px",
                   }}
-                  required
-                />
-                <button className="btn btn-outline-success" type="submit">
-                  <FaSearch />
-                </button>
-              </span>
-            </form>
-          </div>
+                >
+                  <input
+                    className="form-control"
+                    onChange={(event) => {
+                      setName(event.target.value);
+                    }}
+                    required
+                  />
+                  <button className="btn btn-outline-success" type="submit">
+                    <FaSearch />
+                  </button>
+                </span>
+              </form>
+            </div>
+          )}
         </div>
       </div>
       {details !== {} && show === true && (
