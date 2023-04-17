@@ -7,6 +7,7 @@ import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import Row from "react-bootstrap/Row";
 import { useNavigate } from "react-router-dom";
+import jwtDecode from "jwt-decode";
 
 function Login({ closeModal }) {
   const [chooseLogin, setChooseLogin] = useState(true);
@@ -108,9 +109,29 @@ function Login({ closeModal }) {
 
       if (data.user) {
         localStorage.setItem("token", data.user);
+
+        const token = localStorage.getItem("token");
+        if (token) {
+          const user = jwtDecode(token);
+          if (user) {
+            localStorage.setItem("userRole", user.role);
+            localStorage.setItem("userEmail", user.email);
+            localStorage.setItem("userName", user.name);
+          }
+        }
         alert("User Login Successful");
         closeModal(false);
-        navigate("/user-home");
+        const role = localStorage.getItem("userRole");
+
+        if (role === "doctor") {
+          navigate("/doctor-home");
+        } else if (role === "admin") {
+          navigate("/admin/staff");
+        } else if (role === "pharmacist") {
+          navigate("/dashboard");
+        } else {
+          navigate("/user-home");
+        }
       } else if (data.error === "Invalid email") {
         alert("Invalid email");
       } else if (data.error === "Invalid password") {
