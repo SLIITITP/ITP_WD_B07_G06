@@ -5,7 +5,10 @@
   }
   
   .container1{
-    display: flex;
+    padding-left: 250px;
+    overflow-y: scroll;
+    height: 100vh;
+    /* display: flex; */
   }
   
   main{
@@ -14,10 +17,17 @@
   }
   
   .sidebar{
-    background: #386fa4;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 250px;
+    background-color: #386fa4;
+    color: white;
+    /* background: #386fa4;
     color: white;
     height: 100vh;
-    width: 250px;
+    width: 250px; */
     transition: all 0.5s;
   }
   
