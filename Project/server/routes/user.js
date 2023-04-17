@@ -120,4 +120,45 @@ router.route("/doctor/register").post(async (req, res) => {
   }
 });
 
+router.route("/all-details").get(async (req, res) => {
+  const users = await User.find({});
+
+  let adminCount = 0;
+  let userCount = 0;
+  let doctorCount = 0;
+  let pharmacistCount = 0;
+  let supportAgentCount = 0;
+
+  if (users) {
+    users.map((user) => {
+      if (user.role === "admin") {
+        adminCount = adminCount + 1;
+      }
+      if (user.role === "doctor") {
+        doctorCount = doctorCount + 1;
+      }
+      if (user.role === "pharmacist") {
+        pharmacistCount = pharmacistCount + 1;
+      }
+      if (user.role === "support agent") {
+        supportAgentCount = supportAgentCount + 1;
+      }
+      if (user.role === "user") {
+        userCount = userCount + 1;
+      }
+    });
+    res.json({
+      couunt: [
+        adminCount,
+        doctorCount,
+        pharmacistCount,
+        supportAgentCount,
+        userCount,
+      ],
+    });
+  } else {
+    res.send("No data found");
+  }
+});
+
 module.exports = router;

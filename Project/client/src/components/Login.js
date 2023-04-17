@@ -126,7 +126,7 @@ function Login({ closeModal }) {
         if (role === "doctor") {
           navigate("/doctor-home");
         } else if (role === "admin") {
-          navigate("/admin");
+          navigate("/admin/staff");
         } else if (role === "pharmacist") {
           navigate("/dashboard");
         } else {
