@@ -32,7 +32,9 @@ function NavBar() {
             <Nav className="me-auto my-2 my-lg-0" style={{ fontSize: "18px" }}>
               <Nav.Link href="/">Home</Nav.Link>
               <Nav.Link href="#action2">About Us</Nav.Link>
-              <Nav.Link href="#action2">Contact Us</Nav.Link>
+              {userRole === "user" && (
+                <Nav.Link href="/user-support">Support</Nav.Link>
+              )}
                 <Nav.Link href="/user-appointment">Appointment</Nav.Link>
               {userRole === "user" && (
                 <Nav.Link href="/user-check-reports">Reports</Nav.Link>

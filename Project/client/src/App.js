@@ -28,6 +28,9 @@ import SearchSchedule from "./components/SearchSchedules";
 import Addgoal from "./components/Addgoal";
 import Weeklygoal from "./components/Weeklygoal";
 import Updategoal from "./components/Updategoal";
+import Addticket from "./components/Addticket";
+import ViewTicket from "./components/ViewTicket";
+import Tickets from "./components/Tickets";
 
 const App = () => {
   return (
@@ -47,6 +50,22 @@ const App = () => {
             element={
               <UserElement>
                 <UserHome />
+              </UserElement>
+            }
+          />
+          <Route
+            path="/user-support"
+            element={
+              <UserElement>
+                <Addticket />
+              </UserElement>
+            }
+          />
+          <Route
+            path="/user-ticket/view"
+            element={
+              <UserElement>
+                <ViewTicket />
               </UserElement>
             }
           />
@@ -149,6 +168,14 @@ const App = () => {
                   <AllAppointment />
                 </AdimnSideBar>
               </AdminElement>
+            }
+          />
+          <Route
+            path="/support-home"
+            element={
+              <SupportElement>
+                <Tickets/>
+              </SupportElement>
             }
           />
           <Route
@@ -297,6 +324,17 @@ function PharmacistElement({ children }) {
   const userType = localStorage.getItem("userRole");
 
   if (userType === "pharmacist") {
+    return <>{children}</>;
+  } else {
+    alert("Access denied");
+    window.location.replace("/");
+  }
+}
+
+function SupportElement({ children }) {
+  const userType = localStorage.getItem("userRole");
+
+  if (userType === "support agent") {
     return <>{children}</>;
   } else {
     alert("Access denied");
