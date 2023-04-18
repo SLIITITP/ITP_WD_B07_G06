@@ -129,6 +129,8 @@ function Login({ closeModal }) {
           navigate("/admin/staff");
         } else if (role === "pharmacist") {
           navigate("/dashboard");
+        }else if (role === "support agent") {
+          navigate("/support-home");
         } else {
           navigate("/user-home");
         }

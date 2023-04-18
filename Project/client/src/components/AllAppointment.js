@@ -10,6 +10,7 @@ export default function AllAppointment(){
     const [column, setColumns] = useState([]);
     const [appointments, setAppointments] = useState([]);
     
+    
 
     useEffect(() => {
         function getAppointments() {
@@ -25,7 +26,9 @@ export default function AllAppointment(){
         getAppointments();
     }, [])
 
-    if(appointments.length == 0) {
+    console.log(column);
+
+    if(appointments.length === 0) {
         return <p>No appointments found</p>
     }
 
