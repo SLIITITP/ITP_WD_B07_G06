@@ -63,6 +63,9 @@ const ticketRouter = require("./routes/Ticket.js");
 
 app.use("/ticket", ticketRouter);
 
+const quizRouter = require("./routes/quiz.js");
+app.use("/quiz", quizRouter);
+
 app.listen(PORT, () => {
   console.log(`Server is up and running on port number : ${PORT}`);
 });
