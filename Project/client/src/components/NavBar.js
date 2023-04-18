@@ -35,6 +35,7 @@ function NavBar() {
               {userRole === "user" && (
                 <Nav.Link href="/user-support">Support</Nav.Link>
               )}
+              <Nav.Link href="/user-quiz">Quiz</Nav.Link>
                 <Nav.Link href="/user-appointment">Appointment</Nav.Link>
               {userRole === "user" && (
                 <Nav.Link href="/user-check-reports">Reports</Nav.Link>
