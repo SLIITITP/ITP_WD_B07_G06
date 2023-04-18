@@ -70,7 +70,7 @@ function Login({ closeModal }) {
 
       if (data.status === "ok") {
         alert("User Registered Successfully");
-        setValidated(true);
+        setValidated(false);
         setChooseLogin(true);
       } else if (data.error === "Invalid name") {
         alert("Invalid name");
@@ -129,7 +129,7 @@ function Login({ closeModal }) {
           navigate("/admin/staff");
         } else if (role === "pharmacist") {
           navigate("/dashboard");
-        }else if (role === "support agent") {
+        } else if (role === "support agent") {
           navigate("/support-home");
         } else {
           navigate("/user-home");
@@ -176,15 +176,18 @@ function Login({ closeModal }) {
                       type="text"
                       placeholder="Your name"
                       onChange={(event) => setName(event.target.value)}
-                      isInvalid={name.length < 3}
-                      isValid={name.length >= 3}
                     />
-                    <Form.Control.Feedback type="invalid">
+                    <Form.Control.Feedback
+                      type="invalid"
+                      isInvalid={name.length < 3}
+                    >
                       {name.length === 0
                         ? "Name is required"
                         : "Name should be atleast three characters"}
                     </Form.Control.Feedback>
-                    <Form.Control.Feedback></Form.Control.Feedback>
+                    <Form.Control.Feedback
+                      isValid={name.length >= 3}
+                    ></Form.Control.Feedback>
                   </Form.Group>
                   <Form.Group as={Col} md="12" controlId="registerEmail">
                     <Form.Label>Email</Form.Label>
@@ -198,41 +201,48 @@ function Login({ closeModal }) {
                         placeholder="Email"
                         aria-describedby="inputGroupPrepend"
                         onChange={(event) => setEmail(event.target.value)}
+                      />
+                      <Form.Control.Feedback
+                        type="invalid"
                         isInvalid={
                           !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(
                             email
                           )
                         }
+                      >
+                        {email.length === 0
+                          ? "Email is required"
+                          : "Please enter a valid email"}
+                      </Form.Control.Feedback>
+                      <Form.Control.Feedback
                         isValid={
                           !!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(
                             email
                           )
                         }
-                      />
-                      <Form.Control.Feedback type="invalid">
-                        {email.length === 0
-                          ? "Email is required"
-                          : "Please enter a valid email"}
-                      </Form.Control.Feedback>
-                      <Form.Control.Feedback></Form.Control.Feedback>
+                      ></Form.Control.Feedback>
                     </InputGroup>
                   </Form.Group>
                   <Form.Group as={Col} md="12" controlId="registerPassword">
                     <Form.Label>Password</Form.Label>
                     <Form.Control
                       required
+                      minLength={5}
                       type="password"
                       placeholder="Password"
                       onChange={(event) => setPassword(event.target.value)}
-                      isValid={password.length >= 5}
-                      isInvalid={password.length < 5}
                     />
-                    <Form.Control.Feedback type="invalid">
+                    <Form.Control.Feedback
+                      type="invalid"
+                      isInvalid={password.length < 5}
+                    >
                       {password.length === 0
                         ? "Password is required"
                         : "Password should be atleast five characters"}
                     </Form.Control.Feedback>
-                    <Form.Control.Feedback></Form.Control.Feedback>
+                    <Form.Control.Feedback
+                      isValid={password.length >= 5}
+                    ></Form.Control.Feedback>
                   </Form.Group>
                   <Form.Group
                     as={Col}
@@ -242,23 +252,27 @@ function Login({ closeModal }) {
                     <Form.Label>Confirm Password</Form.Label>
                     <Form.Control
                       required
+                      minLength={5}
                       type="password"
                       placeholder="Confirm Password"
                       onChange={(event) =>
                         setConfirmPassword(event.target.value)
                       }
-                      isValid={confirmPassword === password}
+                    />
+                    <Form.Control.Feedback
+                      type="invalid"
                       isInvalid={
                         confirmPassword !== password ||
                         confirmPassword.length === 0
                       }
-                    />
-                    <Form.Control.Feedback type="invalid">
+                    >
                       {password.length === 0
                         ? "Confirm password is required"
                         : "Confirm password does not match"}
                     </Form.Control.Feedback>
-                    <Form.Control.Feedback></Form.Control.Feedback>
+                    <Form.Control.Feedback
+                      isValid={confirmPassword === password}
+                    ></Form.Control.Feedback>
                   </Form.Group>
                 </Row>
                 <Button type="submit">Sign Up</Button>
@@ -281,39 +295,48 @@ function Login({ closeModal }) {
                         placeholder="Email"
                         aria-describedby="inputGroupPrepend"
                         required
+                      />
+                      <Form.Control.Feedback
+                        type="invalid"
                         isInvalid={
                           !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(
                             username
                           )
                         }
+                      >
+                        {username.length === 0
+                          ? "Email is required"
+                          : "Please enter a valid email"}
+                      </Form.Control.Feedback>
+                      <Form.Control.Feedback
                         isValid={
                           !!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(
                             username
                           )
                         }
-                      />
-                      <Form.Control.Feedback type="invalid">
-                        {username.length === 0
-                          ? "Email is required"
-                          : "Please enter a valid email"}
-                      </Form.Control.Feedback>
+                      ></Form.Control.Feedback>
                     </InputGroup>
                   </Form.Group>
                   <Form.Group as={Col} md="12" controlId="password">
                     <Form.Label>Password</Form.Label>
                     <Form.Control
                       required
+                      minLength={5}
                       type="password"
                       placeholder="Password"
                       onChange={(event) => setUserPassword(event.target.value)}
-                      isValid={userPassword.length >= 5}
-                      isInvalid={userPassword.length < 5}
                     />
-                    <Form.Control.Feedback type="invalid">
+                    <Form.Control.Feedback
+                      type="invalid"
+                      isInvalid={userPassword.length < 5}
+                    >
                       {userPassword.length === 0
                         ? "Password is required"
                         : "Password should be atleast five characters"}
                     </Form.Control.Feedback>
+                    <Form.Control.Feedback
+                      isValid={userPassword.length >= 5}
+                    ></Form.Control.Feedback>
                   </Form.Group>
                 </Row>
                 <Button type="submit">Login</Button>

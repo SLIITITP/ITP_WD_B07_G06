@@ -64,18 +64,21 @@ function UpdateStaff({ closeModal, details }) {
                     type="text"
                     placeholder={details.name}
                     onChange={(event) => setName(event.target.value)}
-                    isInvalid={name.length < 3}
-                    isValid={name.length >= 3}
                     onMouseOut={() => {
                       name.length === 0 && setName(details.name);
                     }}
                   />
-                  <Form.Control.Feedback type="invalid">
+                  <Form.Control.Feedback
+                    type="invalid"
+                    isInvalid={name.length < 3}
+                  >
                     {name.length === 0
                       ? "Name will not changed"
                       : "Name should be atleast three characters"}
                   </Form.Control.Feedback>
-                  <Form.Control.Feedback></Form.Control.Feedback>
+                  <Form.Control.Feedback
+                    isValid={name.length >= 3}
+                  ></Form.Control.Feedback>
                 </Form.Group>
                 <Form.Group as={Col} md="12" controlId="email">
                   <Form.Label>Email</Form.Label>
@@ -106,36 +109,42 @@ function UpdateStaff({ closeModal, details }) {
                       specialization.length === 0 &&
                         setSpecialization(details.specialization);
                     }}
-                    isInvalid={specialization.length < 3}
-                    isValid={specialization.length >= 3}
                   />
-                  <Form.Control.Feedback type="invalid">
+                  <Form.Control.Feedback
+                    type="invalid"
+                    isInvalid={specialization.length < 3}
+                  >
                     {specialization.length === 0
                       ? "Specialization is required"
                       : "Specialization should be atleast three characters"}
                   </Form.Control.Feedback>
-                  <Form.Control.Feedback></Form.Control.Feedback>
+                  <Form.Control.Feedback
+                    isValid={specialization.length >= 3}
+                  ></Form.Control.Feedback>
                 </Form.Group>
                 <Form.Group as={Col} md="12" controlId="experience">
                   <Form.Label>Experience</Form.Label>
                   <Form.Control
                     required
-                    type="text"
+                    type="number"
                     placeholder={details.experience}
                     onChange={(event) => setExperience(event.target.value)}
                     onMouseOut={() => {
                       experience.length === 0 &&
                         setExperience(details.experience);
                     }}
-                    isValid={experience.length >= 1}
-                    isInvalid={experience.length < 1}
                   />
-                  <Form.Control.Feedback type="invalid">
+                  <Form.Control.Feedback
+                    type="invalid"
+                    isInvalid={experience.length < 1}
+                  >
                     {experience.length === 0
                       ? "Experience is required"
                       : "Experience should be atleast five characters"}
                   </Form.Control.Feedback>
-                  <Form.Control.Feedback></Form.Control.Feedback>
+                  <Form.Control.Feedback
+                    isValid={experience.length >= 1}
+                  ></Form.Control.Feedback>
                 </Form.Group>
               </Row>
               <Button type="submit">Update</Button>
