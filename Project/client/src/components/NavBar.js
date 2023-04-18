@@ -46,6 +46,9 @@ function NavBar() {
               {userRole === "user" && (
                 <Nav.Link href="/user-medical-profile">Profile</Nav.Link>
               )}
+              {userRole === "user" && (
+                <Nav.Link href="/view-payment">Payment</Nav.Link>
+              )}
             </Nav>
             <Nav style={{ fontSize: "18px" }}>
               {userRole == null && (
