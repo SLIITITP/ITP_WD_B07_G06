@@ -1,5 +1,8 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import './styles/quiz.css';
+import './styles/addq.css';
+import './styles/viewq.css';
 import UserMainPage from "./pages/userMainPage";
 import UserHome from "./pages/userHome";
 import AdimnSideBar from "./components/AdminSidebar";
@@ -31,6 +34,10 @@ import Updategoal from "./components/Updategoal";
 import Addticket from "./components/Addticket";
 import ViewTicket from "./components/ViewTicket";
 import Tickets from "./components/Tickets";
+import QuizList from "./components/QuizList";
+import ViewQuestions from "./components/ViewQuestions";
+import AddQuestions from "./components/AddQuestions";
+import QuizEdit from "./components/QuizEdit";
 
 const App = () => {
   return (
@@ -112,6 +119,36 @@ const App = () => {
             }
           />
           <Route
+            path="/quiz"
+            element={
+              <DoctorElement>
+                <AdimnSideBar>
+                <ViewQuestions />
+                </AdimnSideBar>
+              </DoctorElement>
+            }
+          />
+          <Route
+            path="/add-quiz"
+            element={
+              <DoctorElement>
+                <AdimnSideBar>
+                <AddQuestions />
+                </AdimnSideBar>
+              </DoctorElement>
+            }
+          />
+          <Route
+            path="/editquiz/:id"
+            element={
+              <DoctorElement>
+                <AdimnSideBar>
+                <QuizEdit />
+                </AdimnSideBar>
+              </DoctorElement>
+            }
+          />
+          <Route
             path="/report"
             element={
               <DoctorElement>
@@ -139,6 +176,14 @@ const App = () => {
             element={
               <PublicElement>
                 <AddAppointment />
+              </PublicElement>
+            }
+          />
+          <Route
+            path="/user-quiz"
+            element={
+              <PublicElement>
+                <QuizList />
               </PublicElement>
             }
           />
