@@ -108,15 +108,15 @@ export default function AddSpecialist() {
               type="text"
               placeholder="Your name"
               onChange={(event) => setName(event.target.value)}
-              isInvalid={name.length < 3}
-              isValid={name.length >= 3}
             />
-            <Form.Control.Feedback type="invalid">
+            <Form.Control.Feedback type="invalid" isInvalid={name.length < 3}>
               {name.length === 0
                 ? "Name is required"
                 : "Name should be atleast three characters"}
             </Form.Control.Feedback>
-            <Form.Control.Feedback></Form.Control.Feedback>
+            <Form.Control.Feedback
+              isValid={name.length >= 3}
+            ></Form.Control.Feedback>
           </Form.Group>
           <Form.Group as={Col} md="6" controlId="registerEmail">
             <Form.Label>Email</Form.Label>
@@ -128,19 +128,22 @@ export default function AddSpecialist() {
                 placeholder="Email"
                 aria-describedby="inputGroupPrepend"
                 onChange={(event) => setEmail(event.target.value)}
+              />
+              <Form.Control.Feedback
+                type="invalid"
                 isInvalid={
                   !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(email)
                 }
-                isValid={
-                  !!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(email)
-                }
-              />
-              <Form.Control.Feedback type="invalid">
+              >
                 {email.length === 0
                   ? "Email is required"
                   : "Please enter a valid email"}
               </Form.Control.Feedback>
-              <Form.Control.Feedback></Form.Control.Feedback>
+              <Form.Control.Feedback
+                isValid={
+                  !!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(email)
+                }
+              ></Form.Control.Feedback>
             </InputGroup>
           </Form.Group>
         </Row>
@@ -155,15 +158,18 @@ export default function AddSpecialist() {
                 placeholder="NIC"
                 aria-describedby="inputGroupPrepend"
                 onChange={(event) => setNIC(event.target.value)}
-                isInvalid={!/^([0-9]{9}[x|X|v|V]|[0-9]{12})$/i.test(nic)}
-                isValid={!!/^([0-9]{9}[x|X|v|V]|[0-9]{12})$/i.test(nic)}
               />
-              <Form.Control.Feedback type="invalid">
+              <Form.Control.Feedback
+                type="invalid"
+                isInvalid={!/^([0-9]{9}[x|X|v|V]|[0-9]{12})$/i.test(nic)}
+              >
                 {nic.length === 0
                   ? "NIC is required"
                   : "Please enter a valid NIC"}
               </Form.Control.Feedback>
-              <Form.Control.Feedback></Form.Control.Feedback>
+              <Form.Control.Feedback
+                isValid={!!/^([0-9]{9}[x|X|v|V]|[0-9]{12})$/i.test(nic)}
+              ></Form.Control.Feedback>
             </InputGroup>
           </Form.Group>
           <Form.Group as={Col} md="6" controlId="registerSpec">
@@ -176,15 +182,18 @@ export default function AddSpecialist() {
                 placeholder="Specialization"
                 aria-describedby="inputGroupPrepend"
                 onChange={(event) => setSpecialization(event.target.value)}
-                isInvalid={specialization.length < 3}
-                isValid={specialization.length >= 3}
               />
-              <Form.Control.Feedback type="invalid">
+              <Form.Control.Feedback
+                type="invalid"
+                isInvalid={specialization.length < 3}
+              >
                 {specialization.length === 0
                   ? "Specialization is required"
                   : "Specialization should be atleast three characters"}
               </Form.Control.Feedback>
-              <Form.Control.Feedback></Form.Control.Feedback>
+              <Form.Control.Feedback
+                isValid={specialization.length >= 3}
+              ></Form.Control.Feedback>
             </InputGroup>
           </Form.Group>
         </Row>
@@ -194,20 +203,23 @@ export default function AddSpecialist() {
             <InputGroup hasValidation>
               <Form.Control
                 required
-                type="text"
+                type="number"
                 minLength={1}
                 placeholder="Experience"
                 aria-describedby="inputGroupPrepend"
                 onChange={(event) => setExperience(event.target.value)}
-                isInvalid={experience.length < 1}
-                isValid={experience.length >= 1}
               />
-              <Form.Control.Feedback type="invalid">
+              <Form.Control.Feedback
+                type="invalid"
+                isInvalid={experience.length < 1}
+              >
                 {experience.length === 0
                   ? "Experience is required"
                   : "Experience should be atleast three characters"}
               </Form.Control.Feedback>
-              <Form.Control.Feedback></Form.Control.Feedback>
+              <Form.Control.Feedback
+                isValid={experience.length >= 1}
+              ></Form.Control.Feedback>
             </InputGroup>
           </Form.Group>
           {/* <Form.Group as={Col} md="6" controlId="registerPhoto">
