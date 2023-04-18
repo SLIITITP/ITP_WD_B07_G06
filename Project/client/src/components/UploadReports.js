@@ -26,7 +26,7 @@ function UploadReports({ closeModal, dName, dEmail }) {
     handleSubmit(event);
     event.preventDefault();
 
-    if (imageUpload == null) return alert("Please upload medical report");
+    // if (imageUpload == null) return alert("Please upload medical report");
 
     const imageRef = ref(storage, `reports/${imageUpload.name + v4()}`);
     uploadBytes(imageRef, imageUpload).then((snapshot) => {
@@ -53,42 +53,44 @@ function UploadReports({ closeModal, dName, dEmail }) {
     handleSubmit(event);
     event.preventDefault();
 
-    const response = await fetch("http://localhost:8070/report/add", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        doctorName,
-        doctorEmail,
-        patientName,
-        patientEmail,
-        patientAge,
-        notes,
-        reportURL,
-      }),
-    });
+    if (validated) {
+      const response = await fetch("http://localhost:8070/report/add", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          doctorName,
+          doctorEmail,
+          patientName,
+          patientEmail,
+          patientAge,
+          notes,
+          reportURL,
+        }),
+      });
 
-    const data = await response.json();
+      const data = await response.json();
 
-    if (data.status === "ok") {
-      alert(
-        "Report was uploaded successfully, Your report ID : " + data.reportId
-      );
-      setValidated(true);
-      window.location.reload(false);
-    } else if (data.error === "Invalid patient name") {
-      alert("Invalid patient name");
-    } else if (data.error === "Invalid patient email") {
-      alert("Invalid patient email");
-    } else if (data.error === "Invalid patient age") {
-      alert("Invalid patient age");
-    } else if (data.error === "Invalid doctor name") {
-      alert("Invalid doctor name");
-    } else if (data.error === "Invalid doctor email") {
-      alert("Invalid doctor email");
-    } else if (data.error === "Invalid report") {
-      alert("Invalid report");
-    } else {
-      alert("Error! Please try again");
+      if (data.status === "ok") {
+        alert(
+          "Report was uploaded successfully, Your report ID : " + data.reportId
+        );
+        setValidated(true);
+        window.location.reload(false);
+      } else if (data.error === "Invalid patient name") {
+        alert("Invalid patient name");
+      } else if (data.error === "Invalid patient email") {
+        alert("Invalid patient email");
+      } else if (data.error === "Invalid patient age") {
+        alert("Invalid patient age");
+      } else if (data.error === "Invalid doctor name") {
+        alert("Invalid doctor name");
+      } else if (data.error === "Invalid doctor email") {
+        alert("Invalid doctor email");
+      } else if (data.error === "Invalid report") {
+        alert("Invalid report");
+      } else {
+        alert("Error! Please try again");
+      }
     }
   }
 
@@ -111,9 +113,11 @@ function UploadReports({ closeModal, dName, dEmail }) {
                       onChange={(event) => {
                         setImageUpload(event.target.files[0]);
                       }}
-                      isInvalid={imageUpload == null}
                     />
-                    <Form.Control.Feedback type="invalid">
+                    <Form.Control.Feedback
+                      type="invalid"
+                      isInvalid={imageUpload == null}
+                    >
                       {imageUpload == null && "Image is required"}
                     </Form.Control.Feedback>
                     <Form.Control.Feedback></Form.Control.Feedback>
@@ -159,15 +163,18 @@ function UploadReports({ closeModal, dName, dEmail }) {
                       onChange={(event) => {
                         setPatientAge(event.target.value);
                       }}
-                      isInvalid={patientAge.length < 1}
-                      isValid={patientAge.length >= 1}
                     />
-                    <Form.Control.Feedback type="invalid">
+                    <Form.Control.Feedback
+                      type="invalid"
+                      isInvalid={patientAge.length < 1}
+                    >
                       {patientAge.length === 0
                         ? "Age is required"
                         : "Age should be a number"}
                     </Form.Control.Feedback>
-                    <Form.Control.Feedback></Form.Control.Feedback>
+                    <Form.Control.Feedback
+                      isValid={patientAge.length >= 1}
+                    ></Form.Control.Feedback>
                   </Form.Group>
                   <Form.Group as={Col} md="12" controlId="notes">
                     <Form.Label>Notes</Form.Label>
