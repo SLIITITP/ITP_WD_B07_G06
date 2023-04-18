@@ -10,6 +10,8 @@ require("dotenv").config();
 const PORT = process.env.PORT || 8070;
 
 app.use(cors());
+app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 app.use(bodyParser.json());
 
 const URL = process.env.MONGODB_URL;
@@ -55,6 +57,11 @@ app.use("/schedule",scheduleRouter);
 const goalsRouter = require("./routes/goals.js");
 
 app.use("/goals", goalsRouter);
+
+const ticketRouter = require("./routes/Ticket.js");
+
+
+app.use("/ticket", ticketRouter);
 
 app.listen(PORT, () => {
   console.log(`Server is up and running on port number : ${PORT}`);
