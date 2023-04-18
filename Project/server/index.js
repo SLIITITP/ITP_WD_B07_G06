@@ -66,6 +66,9 @@ app.use("/ticket", ticketRouter);
 const quizRouter = require("./routes/quiz.js");
 app.use("/quiz", quizRouter);
 
+const paymentRouter = require("./routes/ipayments.js");
+app.use("/ipayments", paymentRouter);
+
 app.listen(PORT, () => {
   console.log(`Server is up and running on port number : ${PORT}`);
 });

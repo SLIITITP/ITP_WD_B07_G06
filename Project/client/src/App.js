@@ -38,6 +38,9 @@ import QuizList from "./components/QuizList";
 import ViewQuestions from "./components/ViewQuestions";
 import AddQuestions from "./components/AddQuestions";
 import QuizEdit from "./components/QuizEdit";
+import Mycards from "./components/Mycards";
+import Addpayment from "./components/Addpayment";
+import Update from "./components/Update";
 
 const App = () => {
   return (
@@ -81,6 +84,30 @@ const App = () => {
             element={
               <UserElement>
                 <Addgoal />
+              </UserElement>
+            }
+          />
+          <Route
+            path="/view-payment"
+            element={
+              <UserElement>
+                <Mycards />
+              </UserElement>
+            }
+          />
+          <Route
+            path="/add-payment"
+            element={
+              <UserElement>
+                <Addpayment />
+              </UserElement>
+            }
+          />
+          <Route
+            path="/update-payment/:id"
+            element={
+              <UserElement>
+                <Update />
               </UserElement>
             }
           />
