@@ -6,9 +6,8 @@
 }
 
 .make-appointment-page {
-    border: 1px solid;
     border-radius: 20px;
-    background-color: rgb(145, 196, 243);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
     padding: 30px;
     width: 50%;
 }

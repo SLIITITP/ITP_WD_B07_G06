@@ -1,12 +1,18 @@
 import React from "react";
 import NavBar from "../components/NavBar";
+import MedicalProfile from "./medicalProfile";
 
 function userHome() {
   return (
-    <div>
+    <>
       <NavBar />
-      <h1>User Home Page</h1>
-    </div>
+      <h2
+        style={{ textAlign: "left", marginLeft: "50px", marginBottom: "50px" }}
+      >
+        My medical reports
+      </h2>
+      <MedicalProfile />
+    </>
   );
 }
 

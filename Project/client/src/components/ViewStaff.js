@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import UpdateSatff from "./UpdateSpecialist";
+import UpdateSatff from "./UpdateStaff";
 
 export default function ViewSpecialists() {
   const [showModal, setShowModal] = useState(false);
@@ -8,13 +8,10 @@ export default function ViewSpecialists() {
 
   useEffect(() => {
     async function fetchSatffData() {
-      const response = await fetch(
-        "http://localhost:8070/specialist/all-details",
-        {
-          method: "GET",
-          headers: { "Content-Type": "application/json" },
-        }
-      );
+      const response = await fetch("http://localhost:8070/staff/all-details", {
+        method: "GET",
+        headers: { "Content-Type": "application/json" },
+      });
       const data = await response.json();
       // console.log(data);
       setStaffDetails(data);
@@ -24,12 +21,9 @@ export default function ViewSpecialists() {
   }, []);
 
   async function deleteMember(id) {
-    const response = await fetch(
-      `http://localhost:8070/specialist/delete/${id}`,
-      {
-        method: "DELETE",
-      }
-    );
+    const response = await fetch(`http://localhost:8070/staff/delete/${id}`, {
+      method: "DELETE",
+    });
 
     const data = await response.json();
 
@@ -50,8 +44,7 @@ export default function ViewSpecialists() {
             <th scope="col">Name</th>
             <th scope="col">Email</th>
             <th scope="col">NIC</th>
-            <th scope="col">Specialization</th>
-            <th scope="col">Experience</th>
+            <th scope="col">Occupation</th>
             <th scope="col" colSpan={2}>
               Edit
             </th>
@@ -64,8 +57,7 @@ export default function ViewSpecialists() {
                 <td>{staffMember.name}</td>
                 <td>{staffMember.email}</td>
                 <td>{staffMember.nic}</td>
-                <td>{staffMember.specialization}</td>
-                <td>{staffMember.experience}</td>
+                <td>{staffMember.role}</td>
                 <td>
                   <button
                     type="button"

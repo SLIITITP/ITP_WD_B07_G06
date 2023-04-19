@@ -10,6 +10,7 @@ import DoctorMainPage from "./pages/doctorMainPage";
 import CheckReports from "./pages/checkReports";
 import MedicalProfile from "./pages/medicalProfile";
 import Staff from "./pages/staff";
+import UserAccounts from "./pages/accounts";
 import Report from "./components/Report";
 import UserStats from "./components/UserStats";
 import AddAppointment from "./components/AddAppointment";
@@ -65,7 +66,7 @@ const App = () => {
             }
           />
           <Route
-            path="/user-home"
+            path="/user-dashboard"
             element={
               <UserElement>
                 <UserHome />
@@ -282,6 +283,16 @@ const App = () => {
               <AdminElement>
                 <AdimnSideBar>
                   <Staff />
+                </AdimnSideBar>
+              </AdminElement>
+            }
+          />
+          <Route
+            path="/admin/accounts"
+            element={
+              <AdminElement>
+                <AdimnSideBar>
+                  <UserAccounts />
                 </AdimnSideBar>
               </AdminElement>
             }

@@ -1,14 +1,18 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { FaSearch, FaTh } from "react-icons/fa";
 
 const GetSchedules = () => {
   const [schedules, setSchedules] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchSchedules = async () => {
       try {
-        const response = await axios.get(`http://localhost:8070/schedule/schedule`);
+        const response = await axios.get(
+          `http://localhost:8070/schedule/schedule`
+        );
         console.log(response);
         if (response.status === 200) {
           setSchedules(response.data);
@@ -21,21 +25,24 @@ const GetSchedules = () => {
   }, []);
 
   const copyToClipboard = (text) => {
-    const textarea = document.createElement('textarea');
+    const textarea = document.createElement("textarea");
     textarea.value = text;
-    textarea.setAttribute('readonly', '');
-    textarea.style.position = 'absolute';
-    textarea.style.left = '-9999px';
+    textarea.setAttribute("readonly", "");
+    textarea.style.position = "absolute";
+    textarea.style.left = "-9999px";
     document.body.appendChild(textarea);
     textarea.select();
-    document.execCommand('copy');
+    document.execCommand("copy");
     document.body.removeChild(textarea);
-    alert('Copied to clipboard');
+    alert("Copied to clipboard");
   };
 
   const handleDownload = async () => {
     try {
-      const response = await axios.get(`http://localhost:8070/schedule/schedule/`, { responseType: "blob" });
+      const response = await axios.get(
+        `http://localhost:8070/schedule/schedule/`,
+        { responseType: "blob" }
+      );
       const url = window.URL.createObjectURL(new Blob([response.data]));
       const link = document.createElement("a");
       link.href = url;
@@ -48,63 +55,96 @@ const GetSchedules = () => {
   };
 
   return (
-    <div style={{backgroundColor:"#37BEB0"}}>
-      <div>
-      <button
-              type="button"
-              className="btn btn-outline-primary"
-              onClick={() => {window.location.replace("/admin/schedule")}}
-            >View
-            </button>
-            <button
-              type="button"
-              className="btn btn-outline-primary"
-              onClick={() => {window.location.replace("/admin/search-schedule")}}
-            >
-             Search
-            </button>
+    <div className="container">
+      <h1 style={{ margin: "0 auto", textAlign: "center" }}>All schedules</h1>
+      <div style={{ marginTop: "50px", marginBottom: "30px" }}>
+        <button
+          type="button"
+          className="btn btn-outline-primary"
+          onClick={() => {
+            window.location.replace("/admin/schedule");
+          }}
+        >
+          <FaTh className="icon" />
+          <div className="text">View</div>
+        </button>
+        <button
+          type="button"
+          className="btn btn-outline-primary"
+          onClick={() => {
+            window.location.replace("/admin/search-schedule");
+          }}
+        >
+          <FaSearch className="icon" />
+          <div className="text">Search</div>
+        </button>
       </div>
-      <h1 style={{margin: '0 auto', textAlign: 'center'}}>All schedules</h1>
-      <table>
-      <thead>
-      <tr>
-        <th style={{border: "1px solid lightgray", padding: "5px"}}>userID</th>
-        <th style={{border: "1px solid lightgray", padding: "5px"}}>Doctor Name</th>
-        <th style={{border: "1px solid lightgray", padding: "5px"}}>Reading Materials</th>
-        <th style={{border: "1px solid lightgray", padding: "5px"}}>Videos</th>
-        <th style={{border: "1px solid lightgray", padding: "5px"}}>Events</th>
-        <th style={{border: "1px solid lightgray", padding: "5px"}}>Schedule ID</th>
-        <th style={{border: "1px solid lightgray", padding: "5px"}}>Actions</th>
-      </tr>
-    </thead>
+
+      <table
+        className="table table-primary table-striped table-hover"
+        style={{ textAlign: "center" }}
+      >
+        <thead>
+          <tr>
+            <th scope="col">Schedule ID</th>
+            <th scope="col">Doctor Name</th>
+            <th scope="col">Materials</th>
+            <th scope="col">Videos</th>
+            <th scope="col">Events</th>
+            <th scope="col" colSpan={3}>
+              Actions
+            </th>
+          </tr>
+        </thead>
         <tbody>
           {schedules &&
-            schedules.map((schedule) => (
-              <tr key={schedule._id} style={{border: "1px solid lightgray"}}>
-            <td style={{border: "1px solid lightgray", padding: "5px"}}>{schedule.userID}</td>
-            <td style={{border: "1px solid lightgray", padding: "5px"}}>{schedule.docName}</td>
-            <td style={{border: "1px solid lightgray", padding: "5px"}}>{schedule.materials}</td>
-            <td style={{border: "1px solid lightgray", padding: "5px"}}>{schedule.videos}</td>
-            <td style={{border: "1px solid lightgray", padding: "5px"}}>{schedule.events}</td>
-            <td style={{border: "1px solid lightgray", padding: "5px"}}>{schedule._id}</td>    
-            <td style={{display: 'flex', gap: '10px', border: "1px solid lightgray", padding: "5px"}}>
-
-            <button style={{backgroundColor:"#94C973"}} onClick={() => copyToClipboard(schedule._id)}>
-              Copy
-            </button>
-              <button style={{backgroundColor:"#94C973"}}>
-                  <Link to={`/update-schedule/${schedule._id}`} className="update buttonC">
-                Edit
-                </Link>
-              </button>
-              
-                  <button style={{backgroundColor:"#94C973"}}><Link to={`/delete-schedule/${schedule._id}`} className="update buttonC">Delete </Link></button>
-                </td>
-              </tr>
-            ))}
+            schedules.map((schedule, index) => {
+              return (
+                <tr key={index}>
+                  <td>{schedule.userID}</td>
+                  <td>{schedule.docName}</td>
+                  <td>{schedule.materials}</td>
+                  <td>{schedule.videos}</td>
+                  <td>{schedule.events}</td>
+                  <td>
+                    <button
+                      type="button"
+                      className="btn btn-success"
+                      onClick={() => copyToClipboard(schedule._id)}
+                    >
+                      Copy
+                    </button>
+                  </td>
+                  <td>
+                    <button
+                      type="button"
+                      className="btn btn-primary"
+                      onClick={() => {
+                        navigate(`/update-schedule/${schedule._id}`);
+                      }}
+                    >
+                      Update
+                    </button>
+                  </td>
+                  <td>
+                    <button
+                      type="button"
+                      className="btn btn-danger"
+                      onClick={() => {
+                        navigate(`/delete-schedule/${schedule._id}`);
+                      }}
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              );
+            })}
         </tbody>
       </table>
-      <button  style={{backgroundColor:"#94C973"}} onClick={handleDownload}>Download</button>
+      <button className="btn btn-success" onClick={handleDownload}>
+        Download
+      </button>
     </div>
   );
 };

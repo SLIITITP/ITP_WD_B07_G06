@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import NavBar from "../components/NavBar";
 
 function MedicalProfile() {
   const email = localStorage.getItem("userEmail");
@@ -23,44 +22,60 @@ function MedicalProfile() {
 
   return (
     <div>
-      <NavBar />
       <div>
-        {reportData.map((report, index) => {
-          return (
-            <div
-              className="card"
-              style={{ width: "60%", margin: "auto", marginBottom: "20px" }}
-              key={index}
-            >
-              <div className="card-header">
-                <h3>Report ID : {report.id}</h3>
-              </div>
-              <div className="card-body" style={{ display: "flex" }}>
-                <div style={{ width: "70%" }}>
-                  <h5 className="card-title">
-                    {"Patient Name :" + report.patientName}
-                  </h5>
-                  <h5 className="card-title">
-                    {"Doctor Name :" + report.doctorName}
-                  </h5>
-                  <br />
-                  <br />
-                  <br />
-                  <button className="btn btn-success" disabled>
-                    {report.status}
-                  </button>
-                </div>
-                <div>
-                  <img
-                    src={report.reportURL}
-                    alt="Report"
-                    style={{ width: "200px", height: "200px" }}
-                  />
-                </div>
-              </div>
-            </div>
-          );
-        })}
+        <table class="table" style={{ width: "70%", margin: "auto" }}>
+          <thead>
+            <tr>
+              <th scope="col">Report ID</th>
+              <th scope="col">Doctor Name</th>
+              <th scope="col">Status</th>
+              <th scope="col">Attachments</th>
+              <th scope="col">Prescription</th>
+            </tr>
+          </thead>
+          <tbody class="table-group-divider">
+            {reportData.map((report, index) => {
+              return (
+                <tr>
+                  <th scope="row">{report.id}</th>
+                  <td>{report.doctorName}</td>
+                  <td>
+                    <button
+                      className="btn btn-success"
+                      disabled
+                      style={{ marginRight: "30px" }}
+                    >
+                      {report.status}
+                    </button>
+                  </td>
+                  <td>
+                    <button
+                      className="btn btn-primary"
+                      onClick={() => {
+                        window.open(report.reportURL, "_blank");
+                      }}
+                    >
+                      View Report
+                    </button>
+                  </td>
+                  {report.prescriptionURL !== "" && (
+                    <td>
+                      <button
+                        className="btn btn-primary"
+                        onClick={() => {
+                          window.open(report.prescriptionURL, "_blank");
+                        }}
+                      >
+                        View Prescription
+                      </button>
+                    </td>
+                  )}
+                  {report.prescriptionURL === "" && <td></td>}
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
       </div>
     </div>
   );
