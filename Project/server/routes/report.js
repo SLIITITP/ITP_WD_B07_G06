@@ -11,6 +11,7 @@ router.route("/add").post(async (req, res) => {
   const patientAge = Number(req.body.patientAge);
   const notes = req.body.notes;
   const reportURL = req.body.reportURL;
+  const prescriptionURL = "";
   let id = 100;
   let max = 100;
   const status = "Pending";
@@ -60,6 +61,7 @@ router.route("/add").post(async (req, res) => {
       notes,
       status,
       reportURL,
+      prescriptionURL,
     });
 
     newReport.save().then(() => {
@@ -95,6 +97,24 @@ router.route("/get-reports/:id").get(async (req, res) => {
     return res.json({ status: "Found Reports", report: report });
   } else {
     return res.json({ status: "No Reports" });
+  }
+});
+
+router.route("/update/:id").put(async (req, res) => {
+  const id = req.body.id;
+  const prescriptionURL = req.body.reportURL;
+
+  try {
+    const updateReport = {
+      status: "Reviewed",
+      prescriptionURL: prescriptionURL,
+    };
+
+    await Report.findOneAndUpdate({ id: id }, updateReport).then(() => {
+      res.json({ status: "Prescription added" });
+    });
+  } catch (error) {
+    console.log(error.message);
   }
 });
 

@@ -14,45 +14,44 @@ export default function DeleteAppointment() {
   const [appointmentTime, setAppointmentTime] = useState("");
 
   const handleDelete = async (event) => {
-    const confirmed = window.confirm("Are you sure you want to delete this appointment?");
+    const confirmed = window.confirm(
+      "Are you sure you want to delete this appointment?"
+    );
     if (confirmed) {
       setLoading(true);
       try {
         await axios.delete(`http://localhost:8070/appointment/delete/${id}`);
         setLoading(false);
-        window.location="/admin/appointment";
+        window.location = "/admin/appointment";
       } catch (err) {
         setError(err.response.data.error);
       }
-    }
-    else{
+    } else {
       event.preventDefault();
-      window.location="/admin/appointment";
+      window.location = "/admin/appointment";
     }
   };
 
-  useEffect(()=>{
-      const showAppointment = async()=>{
-
-          try{
-            
-            const response = await axios.get(`http://localhost:8070/appointment/get/${id}`);
-            if(response.status===200){
-              setPatientName(response.data.appointment.patientName)
-        setEmail(response.data.appointment.email)
-        setPhone(response.data.appointment.phone)
-        setDoctorName(response.data.appointment.doctorName)
-        setAppointmentDate(response.data.appointment.appointmentDate)
-        setAppointmentTime(response.data.appointment.appointmentTime)
-            }
-
-          }catch(err){
-            console.log(err);
-          }
-
-      };
-      showAppointment();
-  },[id])
+  useEffect(() => {
+    const showAppointment = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:8070/appointment/get/${id}`
+        );
+        if (response.status === 200) {
+          setPatientName(response.data.appointment.patientName);
+          setEmail(response.data.appointment.email);
+          setPhone(response.data.appointment.phone);
+          setDoctorName(response.data.appointment.doctorName);
+          setAppointmentDate(response.data.appointment.appointmentDate);
+          setAppointmentTime(response.data.appointment.appointmentTime);
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    showAppointment();
+  }, [id]);
 
   if (loading) {
     return <div>Loading...</div>;
@@ -63,10 +62,9 @@ export default function DeleteAppointment() {
   }
 
   return (
-    
-      <div className="container-app">
+    <div className="container-app">
       <form onSubmit={handleDelete} className="make-appointment-page">
-        <div className="mb-3">
+        {/* <div className="mb-3">
                 <label for="id" className="form-label">ID</label>
                 <input
                     type="text"
@@ -75,77 +73,91 @@ export default function DeleteAppointment() {
                     value={id}
                     disabled
                 />
-            </div>
-            <div className="mb-3">
-                <label for="pname" className="form-label">Patient Name</label>
-                <input
-                disabled
-                    type="text"
-                    name="patientName"
-                    className="form-control"
-                    value={patientName}
-                />
-            </div>
+            </div> */}
+        <div className="mb-3">
+          <label for="pname" className="form-label">
+            Patient Name
+          </label>
+          <input
+            disabled
+            type="text"
+            name="patientName"
+            className="form-control"
+            value={patientName}
+          />
+        </div>
 
-            <div className="mb-3">
-                <label for="email" className="form-label">Email</label>
-                <input
-                    type="text"
-                    disabled
-                    name="email"
-                    className="form-control"
-                    value={email}
-                />
-            </div>
+        <div className="mb-3">
+          <label for="email" className="form-label">
+            Email
+          </label>
+          <input
+            type="text"
+            disabled
+            name="email"
+            className="form-control"
+            value={email}
+          />
+        </div>
 
-            <div className="mb-3">
-                <label for="phone" className="form-label">Phone Number</label>
-                <input
-                disabled
-                    type="text"
-                    name="phone"
-                    className="form-control"
-                    value={phone}
-                />
-            </div>
+        <div className="mb-3">
+          <label for="phone" className="form-label">
+            Phone Number
+          </label>
+          <input
+            disabled
+            type="text"
+            name="phone"
+            className="form-control"
+            value={phone}
+          />
+        </div>
 
-            <div className="mb-3">
-                <label for="dname" className="form-label">Doctor Name</label>
-                <input
-                disabled
-                    type="text"
-                    name="doctorName"
-                    className="form-control"
-                    value={doctorName}
-                />
-            </div>
+        <div className="mb-3">
+          <label for="dname" className="form-label">
+            Doctor Name
+          </label>
+          <input
+            disabled
+            type="text"
+            name="doctorName"
+            className="form-control"
+            value={doctorName}
+          />
+        </div>
 
-            <div className="mb-3">
-                <label for="date" className="form-label">Appointment Date</label>
-                
-                <input
-                disabled
-                    type="text"
-                    name="appointmentDate"
-                    className="form-control"
-                    value={appointmentDate}
-                />
-            </div>
+        <div className="mb-3">
+          <label for="date" className="form-label">
+            Appointment Date
+          </label>
 
-            <div className="mb-3">
-                <label for="tiem" className="form-label">Appointment Time</label>
-                <input
-                disabled
-                    type="text"
-                    name="appointmentTime"
-                    className="form-control"
-                    value={appointmentTime}
-                />
-            </div>
+          <input
+            disabled
+            type="text"
+            name="appointmentDate"
+            className="form-control"
+            value={appointmentDate}
+          />
+        </div>
 
-            <button type="submit" className="btn btn-danger">Delete</button>
-            </form>
-      
-    </div>
-  );
+        <div className="mb-3">
+          <label for="tiem" className="form-label">
+            Appointment Time
+          </label>
+          <input
+            disabled
+            type="text"
+            name="appointmentTime"
+            className="form-control"
+            value={appointmentTime}
+          />
+        </div>
+
+        <button type="submit" className="btn btn-danger">
+          Delete
+        </button>
+      </form>
+         
+    </div>
+  );
 }

@@ -39,6 +39,9 @@ const reportSchema = new Schema(
       type: String,
       required: true,
     },
+    prescriptionURL: {
+      type: String,
+    },
   },
   { collection: "report" }
 );

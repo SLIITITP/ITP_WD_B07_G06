@@ -1,8 +1,16 @@
-import React, { useState } from 'react';
-import '../styles/SideNav.css';
-import { Link } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUserAlt, faDollarSign, faUserPlus, faBriefcaseMedical, faHome, faCaretDown, faCaretUp } from '@fortawesome/free-solid-svg-icons';
+import React, { useState } from "react";
+import "../styles/SideNav.css";
+import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faUserAlt,
+  faDollarSign,
+  faUserPlus,
+  faBriefcaseMedical,
+  faHome,
+  faCaretDown,
+  faCaretUp,
+} from "@fortawesome/free-solid-svg-icons";
 
 function SideNav() {
   const [showInvoiceDropdown, setShowInvoiceDropdown] = useState(false);
@@ -27,23 +35,25 @@ function SideNav() {
     setShowMedicineDropdown(!showMedicineDropdown);
   };
 
-  function handleLogout(){
+  function handleLogout() {
     localStorage.removeItem("userRole");
-    window.location.replace("/")
+    window.location.replace("/");
   }
 
   return (
     <div className="sidenav1">
-      <div style={{ textAlign: 'center' }}>
-     
-        <FontAwesomeIcon icon={faUserAlt} style={{ fontSize: '48px', color: 'grey' }} />
-        <h2 style={{ color: 'red' }}>Pharmacist</h2>
+      <div style={{ textAlign: "center" }}>
+        <FontAwesomeIcon
+          icon={faUserAlt}
+          style={{ fontSize: "48px", color: "grey" }}
+        />
+        <h2 style={{ color: "#d00000" }}>Pharmacist</h2>
       </div>
       <Link to="/Dashboard">
         <FontAwesomeIcon icon={faHome} /> Dashboard
       </Link>
       <button className="dropdown-btn" onClick={toggleInvoiceDropdown}>
-        <FontAwesomeIcon icon={faDollarSign} /> Invoice{' '}
+        <FontAwesomeIcon icon={faDollarSign} /> Invoice{" "}
         {showInvoiceDropdown ? (
           <FontAwesomeIcon icon={faCaretUp} />
         ) : (
@@ -57,7 +67,7 @@ function SideNav() {
         </div>
       )}
       <button className="dropdown-btn" onClick={togglePatientDropdown}>
-        <FontAwesomeIcon icon={faUserPlus} /> Patient{' '}
+        <FontAwesomeIcon icon={faUserPlus} /> Patient{" "}
         {showPatientDropdown ? (
           <FontAwesomeIcon icon={faCaretUp} />
         ) : (
@@ -71,7 +81,7 @@ function SideNav() {
         </div>
       )}
       <button className="dropdown-btn" onClick={toggleMedicineDropdown}>
-        <FontAwesomeIcon icon={faBriefcaseMedical} /> Medicine{' '}
+        <FontAwesomeIcon icon={faBriefcaseMedical} /> Medicine{" "}
         {showMedicineDropdown ? (
           <FontAwesomeIcon icon={faCaretUp} />
         ) : (
@@ -92,7 +102,3 @@ function SideNav() {
 }
 
 export default SideNav;
-
-
-
-

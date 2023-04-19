@@ -124,15 +124,15 @@ function Login({ closeModal }) {
         const role = localStorage.getItem("userRole");
 
         if (role === "doctor") {
-          navigate("/doctor-home");
+          navigate("/quiz");
         } else if (role === "admin") {
-          navigate("/admin/staff");
+          navigate("/admin/accounts");
         } else if (role === "pharmacist") {
           navigate("/dashboard");
         } else if (role === "support agent") {
           navigate("/support-home");
         } else {
-          navigate("/user-home");
+          navigate("/user-dashboard");
         }
       } else if (data.error === "Invalid email") {
         alert("Invalid email");
