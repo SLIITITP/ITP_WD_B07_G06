@@ -1,5 +1,14 @@
 import React, { useState } from "react";
-import { FaBars, FaTh, FaUserAlt, FaSignOutAlt } from "react-icons/fa";
+import {
+  FaBars,
+  FaTh,
+  FaUserAlt,
+  FaSignOutAlt,
+  FaFileContract,
+  FaChartBar,
+  FaCalendarCheck,
+  FaClipboardList,
+} from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 import "../styles/adminSideBar.css";
 
@@ -19,16 +28,21 @@ function Sidebar({ children }) {
   if (userRole === "admin") {
     menuIem = [
       // { path: "/admin", name: "Dashboard", icon: <FaTh /> },
-      { path: "/admin/staff", name: "Staff", icon: <FaUserAlt /> },
-      { path: "/admin/user-stats", name: "User Stats", icon: <FaUserAlt /> },
-      { path: "/admin/appointment", name: "Appointment", icon: <FaUserAlt /> },
-      { path: "/admin/schedule", name: "Schedules", icon: <FaUserAlt /> },
+      { path: "/admin/accounts", name: "Staff Accounts", icon: <FaUserAlt /> },
+      { path: "/admin/staff", name: "Portfolios", icon: <FaFileContract /> },
+      { path: "/admin/user-stats", name: "User Stats", icon: <FaChartBar /> },
+      {
+        path: "/admin/appointment",
+        name: "Appointments",
+        icon: <FaCalendarCheck />,
+      },
+      { path: "/admin/schedule", name: "Schedules", icon: <FaClipboardList /> },
     ];
   } else if (userRole === "doctor") {
     menuIem = [
-      { path: "/report", name: "Report", icon: <FaTh /> },
       { path: "/quiz", name: "Quiz", icon: <FaUserAlt /> },
       { path: "/schedule", name: "Schedule", icon: <FaUserAlt /> },
+      { path: "/report", name: "Report", icon: <FaTh /> },
     ];
   }
 

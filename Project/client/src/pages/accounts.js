@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import "../styles/staff.css";
 import { FaTh, FaPlus, FaSearch } from "react-icons/fa";
-import AddSpecialist from "../components/AddSpecialist";
-import ViewSpecialists from "../components/ViewSpecialists";
-import UpdateSatff from "../components/UpdateSpecialist";
+import AddStaff from "../components/AddStaff";
+import ViewStaff from "../components/ViewStaff";
+import UpdateSatff from "../components/UpdateStaff";
 
 function Staff() {
   const [showModal, setShowModal] = useState(false);
@@ -13,12 +13,9 @@ function Staff() {
   const [details, setDetails] = useState({});
 
   async function deleteMember(id) {
-    const response = await fetch(
-      `http://localhost:8070/specialist/delete/${id}`,
-      {
-        method: "DELETE",
-      }
-    );
+    const response = await fetch(`http://localhost:8070/staff/delete/${id}`, {
+      method: "DELETE",
+    });
 
     const data = await response.json();
 
@@ -35,12 +32,9 @@ function Staff() {
       alert("Required");
     } else {
       async function searchDetails(id) {
-        const response = await fetch(
-          `http://localhost:8070/specialist/get/${id}`,
-          {
-            method: "GET",
-          }
-        );
+        const response = await fetch(`http://localhost:8070/staff/get/${id}`, {
+          method: "GET",
+        });
 
         const data = await response.json();
 
@@ -62,7 +56,7 @@ function Staff() {
     <div>
       <div>
         <div style={{ marginBottom: "50px" }}>
-          <h1 style={{ textAlign: "center" }}>Specialist Portfolios</h1>
+          <h1 style={{ textAlign: "center" }}>Staff Details</h1>
         </div>
         <div style={{ marginBottom: "50px", display: "flex" }}>
           <div>
@@ -82,14 +76,6 @@ function Staff() {
               <FaPlus className="icon" />
               <div className="text">Add</div>
             </button>
-            {/* <button
-              type="button"
-              className="btn btn-outline-primary"
-              onClick={() => setSelected("stats")}
-            >
-              <FaChartLine className="icon" />
-              <div className="text">Stats</div>
-            </button> */}
           </div>
           {selected === "view" && (
             <div style={{ marginLeft: "auto" }}>
@@ -127,8 +113,8 @@ function Staff() {
             <thead>
               <tr>
                 <th scope="col">Name</th>
-                <th scope="col">Specialization</th>
-                <th scope="col">Experience</th>
+                <th scope="col">NIC</th>
+                <th scope="col">Occupation</th>
                 <th scope="col" colSpan={2}>
                   Edit
                 </th>
@@ -136,14 +122,14 @@ function Staff() {
             </thead>
             <tbody>
               <tr>
-                <td>{details.specialist.name}</td>
-                <td>{details.specialist.experience}</td>
-                <td>{details.specialist.specialization}</td>
+                <td>{details.staff.name}</td>
+                <td>{details.staff.nic}</td>
+                <td>{details.staff.role}</td>
                 <td>
                   <button
                     type="button"
                     className="btn btn-danger"
-                    onClick={() => deleteMember(details.specialist._id)}
+                    onClick={() => deleteMember(details.staff._id)}
                   >
                     Delete
                   </button>
@@ -179,10 +165,10 @@ function Staff() {
           </button>
         </div>
       )}
-      {selected === "view" && show === false && <ViewSpecialists />}
-      {selected === "add" && show === false && <AddSpecialist />}
+      {selected === "view" && show === false && <ViewStaff />}
+      {selected === "add" && show === false && <AddStaff />}
       {showModal && (
-        <UpdateSatff closeModal={setShowModal} details={details.specialist} />
+        <UpdateSatff closeModal={setShowModal} details={details.staff} />
       )}
     </div>
   );

@@ -72,6 +72,7 @@ export default function AddAppointment() {
             </label>
             <input
               type="text"
+              required
               className="form-control"
               id="pname"
               placeholder="Enter Patient Name"
@@ -87,6 +88,7 @@ export default function AddAppointment() {
             </label>
             <input
               type="email"
+              required
               className="form-control"
               id="email"
               placeholder="Enter Email Address"
@@ -101,6 +103,7 @@ export default function AddAppointment() {
               Phone Number
             </label>
             <input
+              required
               type="text"
               className="form-control"
               id="phone"
@@ -117,6 +120,7 @@ export default function AddAppointment() {
             </label>
             <input
               type="text"
+              required
               className="form-control"
               id="dname"
               placeholder="Enter Doctor Name"
@@ -132,6 +136,7 @@ export default function AddAppointment() {
             </label>
             <input
               type="text"
+              required
               className="form-control"
               id="date"
               placeholder="Enter Appointment Date"
@@ -147,6 +152,7 @@ export default function AddAppointment() {
             </label>
             <input
               type="text"
+              required
               className="form-control"
               id="time"
               placeholder="Enter Appointment Time"
