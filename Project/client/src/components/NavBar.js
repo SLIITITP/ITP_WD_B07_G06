@@ -30,13 +30,14 @@ function NavBar() {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto my-2 my-lg-0" style={{ fontSize: "18px" }}>
-              <Nav.Link href="/">Home</Nav.Link>
-              <Nav.Link href="#action2">About Us</Nav.Link>
               {userRole === "user" && (
                 <Nav.Link href="/user-support">Support</Nav.Link>
               )}
-              <Nav.Link href="/user-quiz">Quiz</Nav.Link>
-                <Nav.Link href="/user-appointment">Appointment</Nav.Link>
+              <Nav.Link href="/user-appointment">Appointment</Nav.Link>
+              <Nav.Link href="/user-quiz">Quizes</Nav.Link>
+              {userRole === null && (
+                <Nav.Link href="/contact-us">Contact</Nav.Link>
+              )}
               {userRole === "user" && (
                 <Nav.Link href="/user-check-reports">Reports</Nav.Link>
               )}
