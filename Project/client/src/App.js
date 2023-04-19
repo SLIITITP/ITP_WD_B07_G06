@@ -1,8 +1,8 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import './styles/quiz.css';
-import './styles/addq.css';
-import './styles/viewq.css';
+import "./styles/quiz.css";
+import "./styles/addq.css";
+import "./styles/viewq.css";
 import UserMainPage from "./pages/userMainPage";
 import UserHome from "./pages/userHome";
 import AdimnSideBar from "./components/AdminSidebar";
@@ -16,13 +16,13 @@ import AddAppointment from "./components/AddAppointment";
 import AllAppointment from "./components/AllAppointment";
 import UpdateAppointment from "./components/UpdateAppointment";
 import DeleteAppointment from "./components/DeleteAppointment";
-import ManagePatient from './components/ManagePatient';
-import AddMedicine from './components/AddMedicine';
-import ManageMedicine from './components/ManageMedicine';
-import AddInvoice from './components/AddInvoice';
-import ManageInvoice from './components/ManageInvoice';
-import Dashboard from './components/Dashboard';
-import AddPatient from './components/AddPatient';
+import ManagePatient from "./components/ManagePatient";
+import AddMedicine from "./components/AddMedicine";
+import ManageMedicine from "./components/ManageMedicine";
+import AddInvoice from "./components/AddInvoice";
+import ManageInvoice from "./components/ManageInvoice";
+import Dashboard from "./components/Dashboard";
+import AddPatient from "./components/AddPatient";
 import AddSchedule from "./components/AddSchedule";
 import GetSchedules from "./components/ViewAllSchedules";
 import UpdateSchedule from "./components/UpdateSchedule";
@@ -41,6 +41,7 @@ import QuizEdit from "./components/QuizEdit";
 import Mycards from "./components/Mycards";
 import Addpayment from "./components/Addpayment";
 import Update from "./components/Update";
+import ContactUs from "./components/ContactUs";
 
 const App = () => {
   return (
@@ -52,6 +53,14 @@ const App = () => {
             element={
               <PublicElement>
                 <UserMainPage />
+              </PublicElement>
+            }
+          />
+          <Route
+            path="/contact-us"
+            element={
+              <PublicElement>
+                <ContactUs />
               </PublicElement>
             }
           />
@@ -150,7 +159,7 @@ const App = () => {
             element={
               <DoctorElement>
                 <AdimnSideBar>
-                <ViewQuestions />
+                  <ViewQuestions />
                 </AdimnSideBar>
               </DoctorElement>
             }
@@ -160,7 +169,7 @@ const App = () => {
             element={
               <DoctorElement>
                 <AdimnSideBar>
-                <AddQuestions />
+                  <AddQuestions />
                 </AdimnSideBar>
               </DoctorElement>
             }
@@ -170,7 +179,7 @@ const App = () => {
             element={
               <DoctorElement>
                 <AdimnSideBar>
-                <QuizEdit />
+                  <QuizEdit />
                 </AdimnSideBar>
               </DoctorElement>
             }
@@ -185,11 +194,56 @@ const App = () => {
               </DoctorElement>
             }
           />
-          <Route path="/schedule" element={<DoctorElement><AdimnSideBar><AddSchedule /></AdimnSideBar></DoctorElement>}/>
-          <Route path="/admin/schedule" element={<AdminElement><AdimnSideBar><GetSchedules/></AdimnSideBar></AdminElement>}/>
-          <Route path="/update-schedule/:id"  element={<AdminElement><AdimnSideBar><UpdateSchedule/></AdimnSideBar></AdminElement>}/>
-          <Route path ="/delete-schedule/:id" element={<AdminElement><AdimnSideBar><DeleteSchedule/></AdimnSideBar></AdminElement>}/>
-          <Route path = "/admin/search-schedule"  element={<AdminElement><AdimnSideBar><SearchSchedule /></AdimnSideBar></AdminElement>}/>
+          <Route
+            path="/schedule"
+            element={
+              <DoctorElement>
+                <AdimnSideBar>
+                  <AddSchedule />
+                </AdimnSideBar>
+              </DoctorElement>
+            }
+          />
+          <Route
+            path="/admin/schedule"
+            element={
+              <AdminElement>
+                <AdimnSideBar>
+                  <GetSchedules />
+                </AdimnSideBar>
+              </AdminElement>
+            }
+          />
+          <Route
+            path="/update-schedule/:id"
+            element={
+              <AdminElement>
+                <AdimnSideBar>
+                  <UpdateSchedule />
+                </AdimnSideBar>
+              </AdminElement>
+            }
+          />
+          <Route
+            path="/delete-schedule/:id"
+            element={
+              <AdminElement>
+                <AdimnSideBar>
+                  <DeleteSchedule />
+                </AdimnSideBar>
+              </AdminElement>
+            }
+          />
+          <Route
+            path="/admin/search-schedule"
+            element={
+              <AdminElement>
+                <AdimnSideBar>
+                  <SearchSchedule />
+                </AdimnSideBar>
+              </AdminElement>
+            }
+          />
           <Route
             path="/user-check-reports"
             element={
@@ -246,7 +300,7 @@ const App = () => {
             path="/support-home"
             element={
               <SupportElement>
-                <Tickets/>
+                <Tickets />
               </SupportElement>
             }
           />
